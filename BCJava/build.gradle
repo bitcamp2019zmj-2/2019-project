@@ -19,6 +19,6 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'bc2019.zmj2.Library'
+        attributes 'Main-Class': 'bc2019.zmj2.ClassPlan'
     }
 }

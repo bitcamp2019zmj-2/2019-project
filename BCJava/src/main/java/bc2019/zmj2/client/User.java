@@ -1,6 +1,8 @@
 package bc2019.zmj2.client;
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 public class User {
 	private String name, major;
 	private ArrayList<TakenCourse> taken;
@@ -48,5 +50,16 @@ public class User {
 			this.taken.add(new TakenCourse(name, grade, year, season));
 		}
 	}
+
 	
+	public static User getUser(String email) {
+		//to do, get user
+		return null;
+	}
+	
+	public static User getUser(String email, JsonObject authObject) {
+		//to do, get auth user
+		return null;
+	}
+
 }
