@@ -20,4 +20,22 @@ public class Major {
 		}
 		return output;
 	}
+	
+	//Checks if a users previously taken/currently planned meets the requirements for this major
+	public boolean meetsReqs(User u) {
+		ArrayList<StoredCourse> allCourses = u.getPlanned();
+		allCourses.addAll(u.getTaken());
+		
+		//Fix later to make this less hacky
+		//Right now, it creates a new user with the old users taken+planned courses listed as taken
+		User u2 = new User(u.getName(), u.getMajor());
+		u2.setTaken(allCourses);
+		
+		for(Requirable r: this.reqs) {
+			if(!r.reqMet(u2)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

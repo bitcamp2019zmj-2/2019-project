@@ -1,16 +1,26 @@
 package bc2019.zmj2.client;
 
-public class TakenCourse {
+public class StoredCourse {
 	private String name;
 	private Grade grade;
 	private int year;
 	private Season season;
+	private int credits;
 	
-	public TakenCourse(String name, Grade grade, int year, Season season) {
+	public StoredCourse(String name, Grade grade, int year, Season season) {
 		this.name = name;
 		this.grade = grade;
 		this.year = year;
 		this.season = season;
+		this.credits = Database.getCourse(name).getCredits();
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
 	}
 
 	public String getName() {

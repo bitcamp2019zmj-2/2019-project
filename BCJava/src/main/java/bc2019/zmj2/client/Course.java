@@ -8,11 +8,13 @@ public class Course implements Requirable {
 	private String name;
 	private HashMap<Requirable, Grade> prereqs;
 	private ArrayList<Requirable> coreqs;
+	private int credits;
 	
 	
-	public Course(String name) {
+	public Course(String name, int credits) {
 		this.name = name;
 		this.prereqs = new HashMap<Requirable, Grade>();
+		this.credits = credits;
 	}
 	
 	
@@ -37,6 +39,11 @@ public class Course implements Requirable {
 	@Override
 	public boolean reqMet(User u, Grade g) {
 		return u.hasTaken(this.name, g);
+	}
+
+
+	public int getCredits() {
+		return this.credits;
 	}
 	
 }
