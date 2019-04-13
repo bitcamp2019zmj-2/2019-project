@@ -33,6 +33,18 @@ public class Group implements Requirable {
 		}
 		return (met>=min && met<=max);
 	}
+
+	@Override
+	public boolean reqMet(User u, Grade g) {
+		int met = 0;
+		for (Requirable r: this.required) {
+			if(r.reqMet(u, g)) {
+				met++;
+			}
+		}
+		return (met>=min && met<=max);
+	}
+	
 	
 	
 }

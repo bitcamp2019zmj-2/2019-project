@@ -22,10 +22,20 @@ public class User {
 		return false;
 	}
 	
+	//Just for checking if they've taken a course at any point in time and achieved a specific minimum grade
+		public boolean hasTaken(String name, Grade g) {
+			for(TakenCourse tc: this.taken) {
+				if(tc.getName().equals(name) && tc.getGrade().ordinal() >= g.ordinal()) {
+					return true;
+				}
+			}
+			return false;
+		}
+	
 	//For checking if they've taken a course during a specific semester
 	public boolean hasTaken(String name, int year, Season season) {
 		for(TakenCourse tc: this.taken) {
-			if(tc.getName().equals(name) && tc.getYear() == year && tc.getSeason() == season) {
+			if(tc.getName().equals(name) && tc.getYear() == year && tc.getSeason().equals(season)) {
 				return true;
 			}
 		}
@@ -33,9 +43,10 @@ public class User {
 	}
 	
 	//Adds a course to the User's taken list if it does not already exist
-	public void addTakenCourse(String name, String grade, int year, Season season) {
+	public void addTakenCourse(String name, Grade grade, int year, Season season) {
 		if(!hasTaken(name, year, season)) {
 			this.taken.add(new TakenCourse(name, grade, year, season));
 		}
 	}
+	
 }

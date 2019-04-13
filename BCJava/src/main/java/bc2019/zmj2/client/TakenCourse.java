@@ -1,11 +1,12 @@
 package bc2019.zmj2.client;
 
 public class TakenCourse {
-	private String name, grade;
+	private String name;
+	private Grade grade;
 	private int year;
 	private Season season;
 	
-	public TakenCourse(String name, String grade, int year, Season season) {
+	public TakenCourse(String name, Grade grade, int year, Season season) {
 		this.name = name;
 		this.grade = grade;
 		this.year = year;
@@ -20,11 +21,11 @@ public class TakenCourse {
 		this.name = name;
 	}
 
-	public String getGrade() {
+	public Grade getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
 
