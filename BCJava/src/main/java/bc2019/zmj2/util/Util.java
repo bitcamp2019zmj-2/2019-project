@@ -13,6 +13,9 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.google.gson.JsonObject;
 
+import bc2019.zmj2.client.AuthUser;
+import bc2019.zmj2.client.User;
+
 public class Util {
 	
 	private static final String logName = "BC2019ZMJ2";
@@ -46,13 +49,14 @@ public class Util {
 		JsonObject response = request("login",params);
 		if(!isError(response)) {
 			//login good!
+			return (AuthUser)User.getUser(user,response);
 		} else {
 			//failed
 		}
 		return null;
 	}
 	
-	public static AuthUser signUp(String email, String pass) throws SignupException {
+	public static AuthUser signup(String email, String pass) throws SignupException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email",email));
 		params.add(new BasicNameValuePair("password",pass));
@@ -60,6 +64,7 @@ public class Util {
 		JsonObject response = request("signup",params);
 		if(!isError(response)) {
 			//signup good
+			return (AuthUser)User.getUser(email, response);
 		} else {
 			//failed
 		}
