@@ -17,16 +17,20 @@ def parse(dept):
     for c in courses:
         print()
         csv_newline = ['""',0,'""','""',0,'""','""','""','""','""','""','""']
-        #print(c['id'][:4],c['id'][4:7],c['id'][7:]) #dept, number, suffix
+
+        #Header from Testudo, all in header of the course
         csv_newline[0] = c['id'][:4] #dept
         csv_newline[1] = c['id'][4:7] #number
         csv_newline[2] = c['id'][7:] #suffix
-        #print(c.find('span',class_='course-title').string) #title
         csv_newline[3] = '"'+c.find('span',class_='course-title').string+'"' #title
-        #print(c.find('span',class_='course-min-credits').string) #credits
         csv_newline[4] = c.find('span',class_='course-min-credits').string #credits
-        #print(c.find('span',class_='grading-method').abbr['title']) #gradmeth
         csv_newline[5] = '"'+c.find('span',class_='grading-method').abbr['title']+'"' #grademeth
+        try: #Gened credit?
+            csv_newline[11] = '"'+c.find('span',class_='course-subcategory').a.string+'"' #gened
+        except AttributeError:
+            None #No gened credit
+
+        #Body text (if exists)
         c_desc = ""
         try:
             ublock = c.find('div',class_='approved-course-texts-container')
@@ -44,7 +48,7 @@ def parse(dept):
                 #Parse out additional info
                 for a in add_info:
                     b = a.text
-                    #Prereq, Coreq, Rest, AKA
+                    #Prereq, Coreq, Restrict, Alternate names
                     if ('Prerequisite' in b):
                         csv_newline[7] = '"'+b[14:]+'"'
                     elif ('Corequisite' in b):
@@ -63,19 +67,17 @@ def parse(dept):
                     c_desc = c.find('div',class_='individual-instruction-message').string
                 except AttributeError: #Tertiary DESC pass failed
                     print("Error retrieving class info due to inconsistant formatting")
-        csv_newline[6] = '"'+c_desc+'"'
-        try:
-            csv_newline[11] = '"'+c.find('span',class_='course-subcategory').a.string+'"' #gened
-        except AttributeError:
-            None
-            #print('Not Gened') #No gened
-        #print('------\n')
+        csv_newline[6] = '"'+c_desc+'"' #description
+        
         print(csv_newline)
         csvout.append(csv_newline)
+
+    #Output data to CSV file
     f_out = open('classes-'+dept+'.csv','w')
     for l in csvout:
         for c in l:
             print(c,end=',',file=f_out)
         print(file=f_out)
     f_out.close()
+
 parse('CMSC')
