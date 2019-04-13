@@ -10,6 +10,11 @@ public class Major {
 		this.reqs = new ArrayList<Requirable>();
 	}
 	
+	public Major(String name, ArrayList<Requirable> reqs) {
+		this.name = name;
+		this.reqs = reqs;
+	}
+	
 	//Gets an array of all unmet requirements for a student in this major
 	public ArrayList<Requirable> getUncompletedReqs(User u){
 		ArrayList<Requirable> output = new ArrayList<Requirable>();

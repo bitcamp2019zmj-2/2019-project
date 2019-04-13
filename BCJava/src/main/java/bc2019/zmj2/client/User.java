@@ -94,15 +94,5 @@ public class User {
 		}
 		return total;
 	}
-	
-	public static User getUser(String email) {
-		//to do, get user
-		return null;
-	}
-	
-	public static User getUser(String email, JsonObject authObject) {
-		//to do, get auth user
-		return null;
-	}
 
 }

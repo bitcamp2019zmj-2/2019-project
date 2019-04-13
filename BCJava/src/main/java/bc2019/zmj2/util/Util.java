@@ -138,4 +138,12 @@ public class Util {
 			return null;
 		}
 	}
+	
+	public static JsonElement retrieve(String documentPath) {
+		return null;
+	}
+	
+	public static JsonElement retrieveAll(String parentPath) {
+		return null;
+	}
 }
