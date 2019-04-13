@@ -12,7 +12,7 @@ public class Major {
 	
 	public ArrayList<Requirable> getUncompletedReqs(User u){
 		ArrayList<Requirable> output = new ArrayList<Requirable>();
-		
+		 
 		return output;
 	}
 }
