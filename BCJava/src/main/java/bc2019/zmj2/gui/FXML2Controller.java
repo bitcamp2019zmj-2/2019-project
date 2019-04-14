@@ -41,6 +41,27 @@ public class FXML2Controller {
 
 	    @FXML
 	    private Button RegisterButton;
+	    
+	    
+	  //COURSE + INFO PANE
+	    // ALLOW THE NAME AND MAJOR AND EMAIL TO BE SET INTO INFO PANE
+	    // THERE IS A DESCRIPTION BOX BUT THAT'S FOR LATER IG IF YOU WANT
+	    // MEH... 
+	    
+
+	    @FXML
+	    private Label usersEmail;
+
+	    @FXML
+	    private Label NameInputHerePls;
+
+	    @FXML
+	    private Label MajorHerePls;
+	    
+	    @FXML
+	    private Label UserDescriptionBoxPls;
+
+	
 
 
 	    @FXML
@@ -59,9 +80,15 @@ public class FXML2Controller {
 					e.printStackTrace();
 				}
 	    	}
-	    }}
+	    }
+	    
+
+
+
+}
 	    
 	    
+
 	    
 
 
