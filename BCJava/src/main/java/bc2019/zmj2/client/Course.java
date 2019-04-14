@@ -17,7 +17,7 @@ public class Course implements Requirable {
 	private Map<Requirable, Grade> prereqs;
 	private List<Requirable> coreqs;
 	private List<Requirable> restrictions;
-	private List<Requirable> alternates;
+	private List<Course> alternates;
 	
 	private String gened;
 	
@@ -132,8 +132,8 @@ public class Course implements Requirable {
 		return alternates;
 	}
 
-	public void setAlternates(List<Requirable> alternates) {
-		this.alternates = alternates;
+	public void setAlternates(List<Course> altNames) {
+		this.alternates = altNames;
 	}
 
 	public String getGened() {
