@@ -31,6 +31,12 @@ public class FXML3Controller {
 
     @FXML
     private Label MajorHerePls1;
+    
+    @FXML
+    private Label email_info;
+
+    @FXML
+    private Label major_info;
 
     public void updateInfo() {
     	name_info.setText("but it works");
