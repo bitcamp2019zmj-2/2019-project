@@ -6,6 +6,7 @@ import java.util.List;
 import bc2019.zmj2.client.Course;
 import bc2019.zmj2.client.Group;
 import bc2019.zmj2.client.Major;
+import bc2019.zmj2.gui.MainAppx;
 import bc2019.zmj2.util.Util;
 
 public class ClassPlan {
