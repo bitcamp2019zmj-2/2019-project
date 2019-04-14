@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
@@ -14,17 +21,40 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2e2e42;">
                <children>
-                  <Label layoutX="36.0" layoutY="30.0" text="Plan your courses" textFill="WHITE">
+                  <Label layoutX="31.0" layoutY="22.0" text="Plan your courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="14.0" radius="5.25" width="9.0" />
+                     </effect>
                   </Label>
-                  <Label fx:id="planCoursesBox" layoutX="36.0" layoutY="92.0" prefHeight="236.0" prefWidth="520.0" />
-                  <Label layoutX="259.0" layoutY="11.0" prefHeight="77.0" prefWidth="118.0" text="⚡" textFill="#c16f30">
+                  <Label fx:id="planCoursesBox" layoutX="31.0" layoutY="206.0" prefHeight="144.0" prefWidth="235.0" />
+                  <Label layoutX="97.0" layoutY="67.0" prefHeight="77.0" prefWidth="118.0" text="⚡" textFill="#c16f30">
                      <font>
                         <Font size="38.0" />
                      </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
                   </Label>
+                  <ProgressBar fx:id="progressBar" layoutX="127.0" layoutY="93.0" prefHeight="24.0" prefWidth="426.0" progress="0.63" style="-fx-border-color: #c16f30; -fx-border-radius: 5px;" />
+                  <Label layoutX="31.0" layoutY="95.0" prefHeight="19.0" prefWidth="60.0" text="Progress:" textFill="#c16f30">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
+                  </Label>
+                  <Separator layoutX="14.0" layoutY="55.0" prefHeight="29.0" prefWidth="570.0" />
+                  <ChoiceBox layoutX="31.0" layoutY="167.0" prefWidth="150.0" AnchorPane.topAnchor="167.0" />
+                  <ChoiceBox layoutX="196.0" layoutY="167.0" prefWidth="150.0" />
+                  <Button layoutX="383.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #c16f30; -fx-font-family: calibri; -fx-border-color: #935729;" text="Search" textFill="WHITE" />
+                  <Label layoutX="31.0" layoutY="145.0" text="Department" textFill="WHITE" />
+                  <Label layoutX="196.0" layoutY="145.0" text="Code" textFill="WHITE" />
+                  <ScrollBar layoutX="586.0" orientation="VERTICAL" prefHeight="372.0" prefWidth="14.0" />
+                  <Pane layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -32,14 +62,38 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2e2e42;">
                <children>
-                  <Circle fill="#2e2e42" layoutX="85.0" layoutY="126.0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.5" />
-                  <Label fx:id="intialPicture" alignment="CENTER" layoutX="57.0" layoutY="83.0" prefHeight="82.0" prefWidth="56.0" text="J" textAlignment="CENTER" textFill="#c16f30">
+                  <Circle fill="#2e2e42" layoutX="85.0" layoutY="92.0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.5" />
+                  <Label fx:id="intialPicture" alignment="CENTER" layoutX="57.0" layoutY="48.0" prefHeight="82.0" prefWidth="56.0" text="J" textAlignment="CENTER" textFill="#c16f30">
                      <font>
                         <Font name="Calibri Light" size="77.0" />
                      </font>
+                     <effect>
+                        <Bloom threshold="0.0" />
+                     </effect>
                   </Label>
-                  <Label layoutX="25.0" layoutY="232.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="#c16f30" />
-                  <Label fx:id="usersEmail" layoutX="73.0" layoutY="232.0" prefHeight="17.0" prefWidth="122.0" textFill="WHITE" />
+                  <Label layoutX="179.0" layoutY="108.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="#c16f30">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="usersEmail" layoutX="222.0" layoutY="106.0" prefHeight="24.0" prefWidth="257.0" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Label>
+                  <Label layoutX="178.0" layoutY="38.0" text="Name:" textFill="#c16f30">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="72.0" text="Major:" textFill="#c16f30">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="177.0" text="Profile Description:" textFill="WHITE" />
+                  <Label layoutX="20.0" layoutY="203.0" prefHeight="147.0" prefWidth="559.0" style="-fx-border-color: #c16f30;" text="Label" />
+                  <Label fx:id="NameInputHerePls" layoutX="222.0" layoutY="37.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
+                  <Label fx:id="MajorHerePls" layoutX="222.0" layoutY="71.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
+                  <Label fx:id="MajorHerePls1" layoutX="232.0" layoutY="81.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
                </children>
             </AnchorPane>
          </content>

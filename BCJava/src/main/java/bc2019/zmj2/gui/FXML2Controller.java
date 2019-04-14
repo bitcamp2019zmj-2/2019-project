@@ -3,6 +3,8 @@ package bc2019.zmj2.gui;
 import java.io.IOException;
 import java.net.URL;
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label;
+
 import bc2019.zmj2.util.SignupException;
 import bc2019.zmj2.util.Util;
 import javafx.event.ActionEvent;
@@ -25,11 +27,6 @@ public class FXML2Controller {
     
     
     
-    @FXML
-    private TextField signUpMajor_txtbox;
-
-    @FXML
-    private TextField SignUpName_txtbox;
 
 	    @FXML
 	    private TextField SignUpVerify_txtbox;
@@ -60,10 +57,9 @@ public class FXML2Controller {
 					e.printStackTrace();
 				}
 	    	}
-
-	    }
-
-	}
-
+	    }}
+	    
+	    
+	    
 
 
