@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.gson.JsonObject;
 
@@ -187,8 +188,24 @@ public class Database {
 	}
 
 	public static AuthUser getUser(String user, JsonObject response) {
-		// TODO Auto-generated method stub
-		return null;
+		//if no user, create user
+		DocumentSnapshot userShot = Util.retrieve("users/"+response.get("localId").getAsString(), response);
+		if(userShot.exists()) {
+			//user is real
+			String name = userShot.getString("name");
+			String major = userShot.getString("major");
+			userShot.get("taken");
+		} else {
+			
+		}
+		return new AuthUser(user,user, response);
+	}
+	
+	public static AuthUser createUser(String major, String name, JsonObject response) {
+		//create!
+		AuthUser newUser = new AuthUser(name, major, response);
+		Util.write("users/"+response.get("localId").getAsString(), (User)newUser);
+		return newUser;
 	}
 	
 	public static Group getGroup(String name) {

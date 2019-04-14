@@ -74,6 +74,7 @@ public class Util {
 		JsonElement response = request("login",params,"");
 		if(!isError(response)) {
 			//login good
+			System.out.println(response);
 			return (AuthUser)Database.getUser(user, (JsonObject)response);
 		} else {
 			//failed
@@ -96,7 +97,7 @@ public class Util {
 		}
 	}
 	
-	public static AuthUser signup(String email, String pass) throws SignupException {
+	public static JsonObject signup(String email, String pass) throws SignupException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email",email));
 		params.add(new BasicNameValuePair("password",pass));
@@ -104,7 +105,7 @@ public class Util {
 		JsonElement response = request("signup",params,"");
 		if(!isError(response)) {
 			//signup good
-			return (AuthUser)User.getUser(email, (JsonObject)response);
+			return (JsonObject)response;
 		} else {
 			//failed
 			if(response.isJsonObject()) {

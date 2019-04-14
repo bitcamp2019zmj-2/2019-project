@@ -110,9 +110,5 @@ public class User {
 		return total;
 	}
 
-	public static AuthUser getUser(String email, JsonObject response) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
