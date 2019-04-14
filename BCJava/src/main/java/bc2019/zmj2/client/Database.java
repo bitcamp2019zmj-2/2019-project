@@ -142,6 +142,15 @@ public class Database {
 			cCourse.setGened(data[11]);
 		}
 	}
+	
+	//temp
+	public static void addCourse(String name, Course c) {
+		if(courses == null) {
+			courses = new HashMap<String,Course>();
+		}
+		courses.put(name, c);
+	}
+	
 
 	public static Course getCourse(String name) {
 		return courses.get(name);

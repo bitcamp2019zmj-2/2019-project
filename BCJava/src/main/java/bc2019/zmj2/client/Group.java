@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Group implements Requirable {
 	private String groupName;
-	private List<Course> requiredCourses;
+	private List<CourseRef> requiredCourses;
 	private List<Group> requiredGroup;
 	private int min, max;
 	
@@ -20,11 +20,11 @@ public class Group implements Requirable {
 		groupName = name;
 		min = 0;
 		max = 0;
-		this.requiredCourses = new ArrayList<Course>();
+		this.requiredCourses = new ArrayList<CourseRef>();
 		this.requiredGroup = new ArrayList<Group>();
 	}
 	
-	public Group(String name, List<Course> courses, List<Group> groups, int min, int max) {
+	public Group(String name, List<CourseRef> courses, List<Group> groups, int min, int max) {
 		this.groupName = name;
 		this.requiredCourses = courses;
 		this.requiredGroup = groups;
@@ -45,8 +45,8 @@ public class Group implements Requirable {
 	public void addReq(Requirable req) {
 		if(req instanceof Group) {
 			this.requiredGroup.add((Group)req);
-		} else if(req instanceof Course) {
-			this.requiredCourses.add((Course)req);
+		} else if(req instanceof CourseRef) {
+			this.requiredCourses.add((CourseRef)req);
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class Group implements Requirable {
 		for(Group r : this.requiredGroup) {
 			output.add(r);
 		}
-		for(Course r : this.requiredCourses) {
+		for(CourseRef r : this.requiredCourses) {
 			output.add(r);
 		}
 		return output;
@@ -81,6 +81,38 @@ public class Group implements Requirable {
 			}
 		}
 		return (met>=min && met<=max);
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public List<CourseRef> getRequiredCourses() {
+		return requiredCourses;
+	}
+
+	public void setRequiredCourses(List<CourseRef> requiredCourses) {
+		this.requiredCourses = requiredCourses;
+	}
+
+	public List<Group> getRequiredGroup() {
+		return requiredGroup;
+	}
+
+	public void setRequiredGroup(List<Group> requiredGroup) {
+		this.requiredGroup = requiredGroup;
+	}
+
+	public int getMin() {
+		return min;
+	}
+
+	public int getMax() {
+		return max;
 	}
 	
 	
