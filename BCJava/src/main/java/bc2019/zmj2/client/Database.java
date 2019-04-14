@@ -20,6 +20,7 @@ import bc2019.zmj2.util.Util;
 public class Database {
 	private static Map<String,Major> majors;
 	private static HashMap<String, Course> courses;
+	private static Map<String, Group> groups;
 	
 	public static void getFromFirebase() {
 		//TODO: Retrieve and parse data on FireBase
@@ -58,10 +59,12 @@ public class Database {
 			
 			String preqdata = data[7]; //Prerequisites
 			preqdata = preqdata.replaceAll("[;\\.]", ""); //Remove random chars
-			Map<Requirable, Grade> preqs = new HashMap<>();
+			Map<String, Group> preqs = new HashMap<>();
+			
 			Pattern gPattern = Pattern.compile("\\((.*?)\\)"); //Get groups
 			Matcher gMatch = gPattern.matcher(preqdata);
 			List<String> groups = new ArrayList<>();
+			int x = 0;
 			while (gMatch.find()) { //Grab all of the groups
 				groups.add(gMatch.group(1));
 			}
@@ -72,20 +75,25 @@ public class Database {
 				String[] gReq = g.split(" ");
 				for (String grS : gReq)
 					newGroup.addReq(courses.get(grS)); //Set up all the groups
-				preqs.put(newGroup, Grade.CM);
+				preqs.put(""+(x++), newGroup);
 			}
 			
 			preqdata = preqdata.replace(" AND", ""); //Get the rest of the prereqs
 			preqdata = preqdata.replaceAll("\\(.*?\\)", "");
 			String[] andPreq = preqdata.split(" ");
-			for (String a : andPreq)
-				preqs.put(courses.get(a),Grade.CM);
+			for (String a : andPreq) {
+				Group newGroup = new Group(cCourse.getName()+a);
+				newGroup.setMin(1);
+				newGroup.setMax(999);
+				newGroup.addReq(new CourseRef(a));
+				preqs.put(""+(x++), newGroup);
+			}
 			cCourse.setPrereqs(preqs);
 			
 			String[] corq = data[8].split(" "); //Corequisites
-			List<Course> corqCourses = new ArrayList<>();
+			List<CourseRef> corqCourses = new ArrayList<>();
 			for (String c : corq) {
-				corqCourses.add(courses.get(c));
+				corqCourses.add(new CourseRef(c));
 			}
 			cCourse.setCoreqs(corqCourses);
 			
@@ -137,19 +145,23 @@ public class Database {
 			
 			
 			String[] alts = data[10].split(" "); //Alternates
-			List<Course> altNames = new ArrayList<>();
+			List<CourseRef> altNames = new ArrayList<>();
 			for (String a : alts) {
-				altNames.add(courses.get(a));
+				altNames.add(new CourseRef(a));
 			}
 			cCourse.setAlternates(altNames);
 			
 			cCourse.setGened(data[11]);
 		}
-		
+		writeCoursesToDb();
+	}
+	
+	private static void writeCoursesToDb() {
 		Set<String> keys = courses.keySet();
 		
 		for(String key : keys) {
-			Util.write("classes/" + key.toLowerCase(), courses.get(key));
+			System.err.println("Key: " + key + "  --- " + courses.get(key));
+			Util.write("courses/" + key.toLowerCase(), courses.get(key));
 		}
 	}
 	
@@ -177,6 +189,14 @@ public class Database {
 	public static AuthUser getUser(String user, JsonObject response) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public static Group getGroup(String name) {
+		return groups.get(name);
+	}
+	
+	public static void addGroup(String name, Group group) {
+		groups.put(name, group);
 	}
 }
 

@@ -14,13 +14,14 @@ public class Course implements Requirable {
 	private List<String> gradeMethods;
 	private String description;
 	
-	private Map<Requirable, Grade> prereqs; //AND conditions, OR done by Group
-	private List<Course> coreqs;
+//	private Map<String, Grade> prereqs; //AND conditions, OR done by Group
+	private Map<String, Group> prereqGroups;
+	private List<CourseRef> coreqs;
 	private List<Requirable> restrictions;
 	private List<String> deptForbidden;
 	private List<String> majorForbidden;
 	private List<String> requiredMajor;
-	private List<Course> alternates;
+	private List<CourseRef> alternates;
 	
 	private String gened;
 	
@@ -32,7 +33,7 @@ public class Course implements Requirable {
 		this.credits = 0;
 		this.gradeMethods = null;
 		this.description = null;
-		this.prereqs = null;
+//		this.prereqs = null;
 		this.coreqs = null;
 		this.restrictions = null;
 		this.alternates = null;
@@ -41,8 +42,8 @@ public class Course implements Requirable {
 	
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,
-			Map<Requirable,Grade> prereqs, List<Course> coreqs,
-			List<Requirable> restrictions, List<Course> alternates, String gened) {
+			List<CourseRef> coreqs,
+			List<Requirable> restrictions, List<CourseRef> alternates, String gened) {
 		this.dept = dept;
 		this.number = number;
 		this.suffix = suffix;
@@ -50,7 +51,7 @@ public class Course implements Requirable {
 		this.credits = credits;
 		this.gradeMethods = gradeMethods;
 		this.description = description;
-		this.prereqs = prereqs;
+//		this.prereqs = prereqs;
 		this.coreqs = coreqs;
 		this.restrictions = restrictions;
 		this.alternates = alternates;
@@ -65,7 +66,7 @@ public class Course implements Requirable {
 		this.credits = 0;
 		this.gradeMethods = null;
 		this.description = "Blank Description";
-		this.prereqs = null;
+//		this.prereqs = null;
 		this.coreqs = null;
 		this.restrictions = null;
 		this.alternates = null;
@@ -80,10 +81,11 @@ public class Course implements Requirable {
 
 	//Returns bool based on if all prereqs have been met
 	public boolean metAllPrereqs(User u){
-		Iterator<Requirable> iter = this.prereqs.keySet().iterator();
+		Iterator<String> iter = this.prereqGroups.keySet().iterator();
 		while(iter.hasNext()) {
-			Requirable r = iter.next();
-			if(!r.reqMet(u, this.prereqs.get(r))) {
+			String r = iter.next();
+			Requirable req = this.prereqGroups.get(r);
+			if(!req.reqMet(u, Grade.CM)) {
 				return false;
 			}
 		}
@@ -121,19 +123,19 @@ public class Course implements Requirable {
 		this.description = description;
 	}
 
-	public Map<Requirable, Grade> getPrereqs() {
-		return prereqs;
+	public Map<String, Group> getPrereqs() {
+		return prereqGroups;
 	}
 
-	public void setPrereqs(Map<Requirable, Grade> prereqs) {
-		this.prereqs = prereqs;
+	public void setPrereqs(Map<String, Group> prereqs) {
+		this.prereqGroups = prereqs;
 	}
 
-	public List<Course> getCoreqs() {
+	public List<CourseRef> getCoreqs() {
 		return coreqs;
 	}
 
-	public void setCoreqs(List<Course> coreqs) {
+	public void setCoreqs(List<CourseRef> coreqs) {
 		this.coreqs = coreqs;
 	}
 
@@ -145,11 +147,11 @@ public class Course implements Requirable {
 		this.restrictions = restrictions;
 	}
 
-	public List<Course> getAlternates() {
+	public List<CourseRef> getAlternates() {
 		return alternates;
 	}
 
-	public void setAlternates(List<Course> altNames) {
+	public void setAlternates(List<CourseRef> altNames) {
 		this.alternates = altNames;
 	}
 
