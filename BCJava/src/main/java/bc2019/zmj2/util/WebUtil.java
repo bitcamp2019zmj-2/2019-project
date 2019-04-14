@@ -36,6 +36,10 @@ public class WebUtil {
 		return false;
 	}
 	
+	public static void init() {
+		//
+	}
+	
 	//init
 	static {
 		if(createClient(false)) {

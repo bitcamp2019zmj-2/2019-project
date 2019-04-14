@@ -36,7 +36,10 @@ public class Util {
 	private static final String dbBaseUrl = "https://firestore.googleapis.com/v1beta1/projects/bitcamp2019-5b031/databases/(default)/documents/";
 	private static final String apiKey = "AIzaSyDBQF0pEnxAK7-npYhU8tNSHziAkwd2U38";
 	
-
+	public static void init() {
+		getLogger().info("Util init");
+	}
+	
 	public static String getUrl(String reqType) {
 		String ret = "";
 		reqType = reqType.toLowerCase();
@@ -76,7 +79,7 @@ public class Util {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_NOT_FOUND":
 					throw new LoginException("Email not found");
@@ -106,7 +109,7 @@ public class Util {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_EXISTS":
 					throw new SignupException("Email Already Exists");
