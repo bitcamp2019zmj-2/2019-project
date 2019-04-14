@@ -21,7 +21,7 @@ public class AuthException extends Exception {
 	}
 	
 	public String getMessage() {
-		return this.getMessage() + " -- " + (el != null ? el.toString():"element is null");
+		return super.getMessage() + " -- " + (el != null ? el.toString():"element is null");
 	}
 	
 	public JsonElement getElement() {

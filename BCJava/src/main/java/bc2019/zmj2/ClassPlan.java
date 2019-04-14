@@ -27,10 +27,10 @@ public class ClassPlan {
     	
     	Major m = new Major("CMSC",creqs,greqs);
     	
-    	MainAppx.begin(args);
+//    	MainAppx.begin(args);
     	
     	try {
-//			Util.login("johndoe@email.com", "123456");
+			Util.login("johndoe@email.com", "1234561");
 //			Util.retrieve("classes/cmsc351", null);
 			Util.write("majors/cmsc", m);
 		} catch (Exception e) {
