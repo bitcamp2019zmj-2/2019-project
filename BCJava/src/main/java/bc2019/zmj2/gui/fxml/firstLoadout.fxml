@@ -71,7 +71,7 @@
                         <Bloom threshold="0.0" />
                      </effect>
                   </Label>
-                  <Label fx:id="email_info" layoutX="179.0" layoutY="108.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="#c16f30">
+                  <Label fx:id="email_info" layoutX="179.0" layoutY="108.0" prefHeight="20.0" prefWidth="318.0" text="Email:" textFill="#c16f30">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -79,12 +79,12 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="name_info" layoutX="178.0" layoutY="38.0" text="Name:" textFill="#c16f30">
+                  <Label fx:id="name_info" layoutX="178.0" layoutY="38.0" prefHeight="20.0" prefWidth="312.0" text="Name:" textFill="#c16f30">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="major_info" layoutX="179.0" layoutY="72.0" text="Major:" textFill="#c16f30">
+                  <Label fx:id="major_info" layoutX="179.0" layoutY="72.0" prefHeight="20.0" prefWidth="293.0" text="Major:" textFill="#c16f30">
                      <font>
                         <Font size="14.0" />
                      </font>
