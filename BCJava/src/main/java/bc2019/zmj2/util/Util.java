@@ -36,7 +36,10 @@ public class Util {
 	private static final String dbBaseUrl = "https://firestore.googleapis.com/v1beta1/projects/bitcamp2019-5b031/databases/(default)/documents/";
 	private static final String apiKey = "AIzaSyDBQF0pEnxAK7-npYhU8tNSHziAkwd2U38";
 	
-
+	public static void init() {
+		getLogger().info("Util init");
+	}
+	
 	public static String getUrl(String reqType) {
 		String ret = "";
 		reqType = reqType.toLowerCase();

@@ -14,8 +14,8 @@ public class Course implements Requirable {
 	private List<String> gradeMethods;
 	private String description;
 	
-	private Map<Requirable, Grade> prereqs;
-	private List<Requirable> coreqs;
+	private Map<Requirable, Grade> prereqs; //AND conditions, OR done by Group
+	private List<Course> coreqs;
 	private List<Requirable> restrictions;
 	private List<Course> alternates;
 	
@@ -38,7 +38,7 @@ public class Course implements Requirable {
 	
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,
-			Map<Requirable,Grade> prereqs, List<Requirable> coreqs,
+			Map<Requirable,Grade> prereqs, List<Course> coreqs,
 			List<Requirable> restrictions, List<Course> alternates, String gened) {
 		this.dept = dept;
 		this.number = number;
@@ -126,11 +126,11 @@ public class Course implements Requirable {
 		this.prereqs = prereqs;
 	}
 
-	public List<Requirable> getCoreqs() {
+	public List<Course> getCoreqs() {
 		return coreqs;
 	}
 
-	public void setCoreqs(List<Requirable> coreqs) {
+	public void setCoreqs(List<Course> coreqs) {
 		this.coreqs = coreqs;
 	}
 
