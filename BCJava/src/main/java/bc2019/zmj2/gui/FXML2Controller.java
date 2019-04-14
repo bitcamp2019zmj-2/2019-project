@@ -58,7 +58,7 @@ public class FXML2Controller {
 		    	c3.updateInfo();
 			} catch (SignupException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace(); 
 			}
     	}
 	}

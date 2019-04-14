@@ -54,11 +54,11 @@
                   <Label layoutX="31.0" layoutY="145.0" text="Department" textFill="WHITE" />
                   <Label layoutX="196.0" layoutY="145.0" text="Code" textFill="WHITE" />
                   <ScrollBar layoutX="586.0" orientation="VERTICAL" prefHeight="372.0" prefWidth="14.0" />
-                  <Pane layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;" />
+                  <Pane fx:id="course_desc" layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;" />
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Info">
+      <Tab onSelectionChanged="#updateInfo" text="Info">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2e2e42;">
                <children>
@@ -71,7 +71,7 @@
                         <Bloom threshold="0.0" />
                      </effect>
                   </Label>
-                  <Label layoutX="179.0" layoutY="108.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="#c16f30">
+                  <Label fx:id="email_info" layoutX="179.0" layoutY="108.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="#c16f30">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -84,13 +84,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="179.0" layoutY="72.0" text="Major:" textFill="#c16f30">
+                  <Label fx:id="major_info" layoutX="179.0" layoutY="72.0" text="Major:" textFill="#c16f30">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label layoutX="35.0" layoutY="177.0" text="Profile Description:" textFill="WHITE" />
-                  <Label layoutX="20.0" layoutY="203.0" prefHeight="147.0" prefWidth="559.0" style="-fx-border-color: #c16f30;" text="Label" />
+                  <Label fx:id="d" layoutX="20.0" layoutY="203.0" prefHeight="147.0" prefWidth="559.0" style="-fx-border-color: #c16f30;" text="Label" />
                   <Label fx:id="NameInputHerePls" layoutX="222.0" layoutY="37.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
                   <Label fx:id="MajorHerePls" layoutX="222.0" layoutY="71.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
                   <Label fx:id="MajorHerePls1" layoutX="232.0" layoutY="81.0" prefHeight="23.0" prefWidth="302.0" textFill="WHITE" />
