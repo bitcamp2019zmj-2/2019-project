@@ -68,7 +68,6 @@ public class Database {
 	}
 	
 	private static void retrieveMajorFromDB(String name) {
-		JsonElement majs = Util.retrieveAll("majors");
 		//majs is map
 		//majs.get(key) = x is map
 		//x has field string name

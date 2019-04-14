@@ -38,7 +38,7 @@ public class MainAppx extends Application {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void begin(String[] args) {
 		launch(args);
 	}
 }
