@@ -68,12 +68,20 @@ public class Database {
 		return courses.get(name);
 	}
 	
+<<<<<<< HEAD
 	private static void retrieveMajorsFromDB() {
 		List<QueryDocumentSnapshot> x = Util.retrieveAll("majors");
 		for(QueryDocumentSnapshot sh : x) {
 			Major m = sh.toObject(Major.class);
 			majors.put(m.getName(), m);
 		}
+=======
+	private static void retrieveMajorFromDB(String name) {
+		//majs is map
+		//majs.get(key) = x is map
+		//x has field string name
+		//x has field array requirements (reference)
+>>>>>>> refs/remotes/origin/master
 	}
 
 	public static AuthUser getUser(String user, JsonObject response) {

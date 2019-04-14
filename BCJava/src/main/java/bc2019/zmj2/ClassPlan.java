@@ -26,6 +26,9 @@ public class ClassPlan {
     	greqs.add(x);
     	
     	Major m = new Major("CMSC",creqs,greqs);
+    	
+    	MainAppx.begin(args);
+    	
     	try {
 //			Util.login("johndoe@email.com", "123456");
 //			Util.retrieve("classes/cmsc351", null);
