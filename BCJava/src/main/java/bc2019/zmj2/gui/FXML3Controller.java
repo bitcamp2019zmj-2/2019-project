@@ -6,6 +6,7 @@ import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Pane;
 
 public class FXML3Controller {
 
@@ -18,8 +19,6 @@ public class FXML3Controller {
     @FXML
     private Label intialPicture;
 
-    @FXML
-    private java.awt.Label usersEmail;
 
     @FXML
     private Label name_info;
