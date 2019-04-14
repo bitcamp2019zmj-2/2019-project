@@ -21,6 +21,20 @@ public class Course implements Requirable {
 	
 	private String gened;
 	
+	public Course() {
+		this.dept = null;
+		this.number = 0;
+		this.suffix = null;
+		this.name = null;
+		this.credits = 0;
+		this.gradeMethods = null;
+		this.description = null;
+		this.prereqs = null;
+		this.coreqs = null;
+		this.restrictions = null;
+		this.alternates = null;
+		this.gened = null;
+	}
 	
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,

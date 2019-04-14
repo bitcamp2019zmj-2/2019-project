@@ -1,17 +1,32 @@
 package bc2019.zmj2.client;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.JsonObject;
 
 public class User {
 	private String name, major;
-	private ArrayList<StoredCourse> taken, planned;
+	private List<StoredCourse> taken, planned;
+	
+	public User() {
+		name = null;
+		major = null;
+		taken = null;
+		planned = null;
+	}
 	
 	public User(String name, String major) {
 		this.name = name;
 		this.major = major;
 		this.taken = new ArrayList<StoredCourse>();
 		this.planned = new ArrayList<StoredCourse>();
+	}
+	
+	public User(String name, String major, List<StoredCourse> taken, List<StoredCourse> planned) {
+		this.name = name;
+		this.major = major;
+		this.taken = taken;
+		this.planned = planned;
 	}
 	
 	public String getName() {
@@ -30,19 +45,19 @@ public class User {
 		this.major = major;
 	}
 
-	public ArrayList<StoredCourse> getTaken() {
+	public List<StoredCourse> getTaken() {
 		return taken;
 	}
 
-	public void setTaken(ArrayList<StoredCourse> taken) {
+	public void setTaken(List<StoredCourse> taken) {
 		this.taken = taken;
 	}
 
-	public ArrayList<StoredCourse> getPlanned() {
+	public List<StoredCourse> getPlanned() {
 		return planned;
 	}
 
-	public void setPlanned(ArrayList<StoredCourse> planned) {
+	public void setPlanned(List<StoredCourse> planned) {
 		this.planned = planned;
 	}
 
@@ -93,6 +108,11 @@ public class User {
 			total += sc.getCredits();
 		}
 		return total;
+	}
+
+	public static AuthUser getUser(String email, JsonObject response) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

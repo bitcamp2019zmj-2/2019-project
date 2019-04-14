@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpEntity;
@@ -12,32 +13,49 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import bc2019.zmj2.client.AuthUser;
+import bc2019.zmj2.client.Database;
 import bc2019.zmj2.client.User;
 
 public class Util {
 	
 	private static final String logName = "BC2019ZMJ2";
-	private static final String baseUrl = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/";
+	private static final String authBaseUrl = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/";
+	private static final String dbBaseUrl = "https://firestore.googleapis.com/v1beta1/projects/bitcamp2019-5b031/databases/(default)/documents/";
 	private static final String apiKey = "AIzaSyDBQF0pEnxAK7-npYhU8tNSHziAkwd2U38";
+	
 
 	public static String getUrl(String reqType) {
-		String ret = baseUrl;
+		String ret = "";
 		reqType = reqType.toLowerCase();
+		boolean requiresKey = false;
 		switch(reqType) {
 		case "login":
-			ret+="verifyPassword?";
+			ret+=authBaseUrl+"verifyPassword?";
+			requiresKey = true;
 			break;
 		case "signup":
-			ret+="signupNewUser?";
+			ret+=authBaseUrl+"signupNewUser?";
+			requiresKey = true;
 			break;
+		case "get":
+			ret+=dbBaseUrl;
 		}
-		ret+="key=" + apiKey;
+		if(requiresKey) {
+			ret+="key=" + apiKey;
+		}
 		return ret;
 	}
 	
@@ -50,15 +68,15 @@ public class Util {
 		params.add(new BasicNameValuePair("email",user));
 		params.add(new BasicNameValuePair("password",pass));
 		params.add(new BasicNameValuePair("returnSecureToken","true"));
-		JsonElement response = request("login",params);
+		JsonElement response = request("login",params,"");
 		if(!isError(response)) {
 			//login good
-			return (AuthUser)User.getUser(user, (JsonObject)response);
+			return (AuthUser)Database.getUser(user, (JsonObject)response);
 		} else {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_NOT_FOUND":
 					throw new LoginException("Email not found");
@@ -80,7 +98,7 @@ public class Util {
 		params.add(new BasicNameValuePair("email",email));
 		params.add(new BasicNameValuePair("password",pass));
 		params.add(new BasicNameValuePair("returnSecureToken","true"));
-		JsonElement response = request("signup",params);
+		JsonElement response = request("signup",params,"");
 		if(!isError(response)) {
 			//signup good
 			return (AuthUser)User.getUser(email, (JsonObject)response);
@@ -88,7 +106,7 @@ public class Util {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_EXISTS":
 					throw new SignupException("Email Already Exists");
@@ -115,9 +133,10 @@ public class Util {
 		
 	}
 	
-	public static JsonElement request(String reqType, List<NameValuePair> params) {
+	public static JsonElement request(String reqType, List<NameValuePair> params, String urlAppend) {
 		try {
-			HttpResponse response = WebUtil.postRequest(getUrl(reqType), params);
+			if(params == null) params = new ArrayList<NameValuePair>();
+			HttpResponse response = WebUtil.postRequest(getUrl(reqType)+urlAppend, params);
 			HttpEntity entity = response.getEntity();
 			if(entity != null) {
 				try  {
@@ -139,11 +158,45 @@ public class Util {
 		}
 	}
 	
-	public static JsonElement retrieve(String documentPath) {
+	//blocking
+	public static DocumentSnapshot retrieve(String documentPath, JsonObject token) {
+		String[] collections = documentPath.split("/");
+		CollectionReference rootRef = WebUtil.getDB().collection(collections[0]);
+		ApiFuture<DocumentSnapshot> future = rootRef.document(collections[1]).get();
+		try {
+			DocumentSnapshot doc = future.get();
+			return doc;
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//must be POJO
+	
+	public static Timestamp write(String documentPath, Object value) {
+		String[] collections = documentPath.split("/");
+		CollectionReference rootRef = WebUtil.getDB().collection(collections[0]);
+		ApiFuture<WriteResult> future = rootRef.document(collections[1]).set(value);
+		try {
+			return future.get().getUpdateTime();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
-	public static JsonElement retrieveAll(String parentPath) {
+	public static List<QueryDocumentSnapshot> retrieveAll(String parentPath) {
+		ApiFuture<QuerySnapshot> docs = WebUtil.getDB().collection(parentPath).get();
+		try {
+			return docs.get().getDocuments();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
+	
+	//to do: to and from reference object
 }
