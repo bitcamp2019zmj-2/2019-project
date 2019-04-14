@@ -17,51 +17,46 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-
-
 public class FXML2Controller {
+
+	@FXML
+	private AnchorPane SignUpPane;
+
+	@FXML
+	private TextField SignUpVerify_txtbox;
 	
+	@FXML
+	private TextField SignUpName_txtbox;
+	
+	@FXML
+	private TextField signUpMajor_txtbox;
 
+	@FXML
+	private TextField signUpPass_txtbox;
 
-    @FXML
-    private AnchorPane SignUpPane;
-    
-    
-    
-    
+	@FXML
+	private TextField signUpEmailAddress_txtbox;
 
-	    @FXML
-	    private TextField SignUpVerify_txtbox;
+	@FXML
+	private Button RegisterButton;
 
-	    @FXML
-	    private TextField signUpPass_txtbox;
-
-	    @FXML
-	    private TextField signUpEmailAddress_txtbox;
-
-	    @FXML
-	    private Button RegisterButton;
-
-
-	    @FXML
-	    void RegisteredUser(ActionEvent event) throws IOException {
-	    	String username = signUpEmailAddress_txtbox.getText();
-	    	String pswd = signUpPass_txtbox.getText();
-	    	String vrfy = SignUpVerify_txtbox.getText();
-	    	if(!username.equals("") && pswd.equals(vrfy)) {
-	    		try {
-					Util.signup(username, pswd);
-			    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
-			    	TabPane pane = FXMLLoader.load(yeet);
-			    	SignUpPane.getChildren().setAll(pane);
-				} catch (SignupException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	    	}
-	    }}
-	    
-	    
-	    
-
-
+	@FXML
+	void RegisteredUser(ActionEvent event) throws IOException {
+		String username = signUpEmailAddress_txtbox.getText();
+    	String pswd = signUpPass_txtbox.getText();
+    	String vrfy = SignUpVerify_txtbox.getText();
+    	if(!username.equals("") && pswd.equals(vrfy)) {
+    		try {
+				JsonObject obj = Util.signup(username, pswd);
+				Database.createUser(SignUpName_txtbox.getText(), signUpMajor_txtbox.getText(), obj);
+		    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
+		    	TabPane pane = FXMLLoader.load(yeet);
+		    	SignUpPane.getChildren().setAll(pane);
+		    	FXML3Controller.updateInfo();
+			} catch (SignupException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+	}
+}
