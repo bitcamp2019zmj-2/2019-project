@@ -39,7 +39,7 @@ public class Course implements Requirable {
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,
 			Map<Requirable,Grade> prereqs, List<Requirable> coreqs,
-			List<Requirable> restrictions, List<Requirable> alternates, String gened) {
+			List<Requirable> restrictions, List<Course> alternates, String gened) {
 		this.dept = dept;
 		this.number = number;
 		this.suffix = suffix;
@@ -142,7 +142,7 @@ public class Course implements Requirable {
 		this.restrictions = restrictions;
 	}
 
-	public List<Requirable> getAlternates() {
+	public List<Course> getAlternates() {
 		return alternates;
 	}
 

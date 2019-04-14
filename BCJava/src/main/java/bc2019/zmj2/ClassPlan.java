@@ -11,7 +11,8 @@ public class ClassPlan {
     public static void main(String[] args) {
     	try {
 			Util.login("johndoe@email.com", "123456");
-			Util.retrieve("users/5kwGbYiw4PSrXTVz2qvS", null);
+			Util.retrieve("classes/cmsc351", null);
+//			Util.write("test");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

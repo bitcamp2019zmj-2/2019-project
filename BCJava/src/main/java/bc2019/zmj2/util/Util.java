@@ -14,16 +14,18 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.gson.Gson;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import bc2019.zmj2.client.AuthUser;
-import bc2019.zmj2.client.Course;
 import bc2019.zmj2.client.Database;
 import bc2019.zmj2.client.User;
 
@@ -156,27 +158,43 @@ public class Util {
 		}
 	}
 	
-	public static JsonElement retrieve(String documentPath, JsonObject token) {
+	//blocking
+	public static DocumentSnapshot retrieve(String documentPath, JsonObject token) {
 		String[] collections = documentPath.split("/");
 		CollectionReference rootRef = WebUtil.getDB().collection(collections[0]);
 		ApiFuture<DocumentSnapshot> future = rootRef.document(collections[1]).get();
 		try {
 			DocumentSnapshot doc = future.get();
-			Course courseObj = doc.toObject(Course.class);
-			System.out.println("epic");
-			System.out.println(courseObj.getCredits());
-			return null;
+			return doc;
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public static JsonElement write(String documentPath) {
+	//must be POJO
+	
+	public static Timestamp write(String documentPath, Object value) {
+		String[] collections = documentPath.split("/");
+		CollectionReference rootRef = WebUtil.getDB().collection(collections[0]);
+		ApiFuture<WriteResult> future = rootRef.document(collections[1]).set(value);
+		try {
+			return future.get().getUpdateTime();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
-	public static JsonElement retrieveAll(String parentPath) {
+	public static List<QueryDocumentSnapshot> retrieveAll(String parentPath) {
+		ApiFuture<QuerySnapshot> docs = WebUtil.getDB().collection(parentPath).get();
+		try {
+			return docs.get().getDocuments();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
