@@ -3,6 +3,9 @@ package bc2019.zmj2.gui;
 import java.io.IOException;
 import java.net.URL;
 
+import com.google.gson.JsonObject;
+
+import bc2019.zmj2.client.Database;
 import bc2019.zmj2.util.SignupException;
 import bc2019.zmj2.util.Util;
 import javafx.event.ActionEvent;
@@ -51,7 +54,8 @@ public class FXML2Controller {
 	    	String vrfy = SignUpVerify_txtbox.getText();
 	    	if(!username.equals("") && pswd.equals(vrfy)) {
 	    		try {
-					Util.signup(username, pswd);
+					JsonObject obj = Util.signup(username, pswd);
+					Database.createUser(SignUpName_txtbox.getText(), signUpMajor_txtbox.getText(), obj);
 			    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
 			    	TabPane pane = FXMLLoader.load(yeet);
 			    	SignUpPane.getChildren().setAll(pane);

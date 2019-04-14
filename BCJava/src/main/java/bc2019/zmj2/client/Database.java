@@ -262,7 +262,7 @@ public class Database {
 		return ret;
 	}
 	
-	public static AuthUser createUser(String major, String name, JsonObject response) {
+	public static AuthUser createUser(String name, String major, JsonObject response) {
 		//create!
 		AuthUser newUser = new AuthUser(name, major, response);
 		Util.write("users/"+response.get("localId").getAsString(), (User)newUser);
