@@ -39,7 +39,25 @@ public class Database {
 		} catch (FileNotFoundException e1) {
 			System.err.println("CSV Datasheet "+dept+" missing or misnamed");
 		}
-		//All courses are in system, but dependencies not resolved
+		//All courses are in system, but dependencies and other data not resolved
+		for (String[] data : fullData) {
+			Course cCourse = courses.get(data[0]+data[1]+data[2]);
+			cCourse.setName(data[3]);
+			cCourse.setCredits(new Integer(data[4]));
+			
+			//Grade Methods
+			String[] gMeth = data[5].split(",");
+			List<String> gMethConvert = new ArrayList<>();
+			for (String g : gMeth)
+				gMethConvert.add(g);
+			cCourse.setGradeMethods(gMethConvert);
+			
+			cCourse.setDescription(data[6]);
+			
+			//PREQ, CORQ, REST, ALTS
+			
+			cCourse.setGened(data[11]);
+		}
 	}
 
 	public static Course getCourse(String name) {
