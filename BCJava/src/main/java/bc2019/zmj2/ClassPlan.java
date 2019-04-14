@@ -11,8 +11,10 @@ public class ClassPlan {
     public static void main(String[] args) {
     	try {
 			Util.login("johndoe@email.com", "123456");
-		} catch (AuthException e) {
+			Util.retrieve("users/5kwGbYiw4PSrXTVz2qvS", null);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import bc2019.zmj2.util.Util;
 
@@ -30,6 +31,11 @@ public class Database {
 		//majs.get(key) = x is map
 		//x has field string name
 		//x has field array requirements (reference)
+	}
+
+	public static AuthUser getUser(String user, JsonObject response) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 
