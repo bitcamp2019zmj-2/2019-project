@@ -6,6 +6,7 @@ import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 public class FXML3Controller {
@@ -43,6 +44,13 @@ public class FXML3Controller {
     
     @FXML
     private Label major_info;
+    
+    @FXML
+    private TextField deptBox;
+
+    @FXML
+    private TextField codeBox;
+
 
     public void updateInfo() {
     	NameInputHerePls.setText(User.getSessionUser().getName());
