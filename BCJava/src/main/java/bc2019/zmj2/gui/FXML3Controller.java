@@ -6,6 +6,7 @@ import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Pane;
 
 public class FXML3Controller {
 
@@ -18,8 +19,6 @@ public class FXML3Controller {
     @FXML
     private Label intialPicture;
 
-    @FXML
-    private java.awt.Label usersEmail;
 
     @FXML
     private Label name_info;
@@ -40,12 +39,15 @@ public class FXML3Controller {
     private Pane course_desc;
 
     @FXML
+    private Label usersEmail;
+    
+    @FXML
     private Label major_info;
 
     public void updateInfo() {
-    	name_info.setText("Name: " + User.getSessionUser().getName());
-    	email_info.setText("Email: " + User.getSessionUser().getEmail());
-    	major_info.setText("Major: " + User.getSessionUser().getMajor());
+    	NameInputHerePls.setText(User.getSessionUser().getName());
+    	usersEmail.setText(User.getSessionUser().getEmail());
+    	MajorHerePls.setText(User.getSessionUser().getMajor());
     	
     }
 
