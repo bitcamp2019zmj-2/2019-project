@@ -3,6 +3,7 @@ package bc2019.zmj2.client;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -45,17 +46,18 @@ public class Database {
 			Course cCourse = courses.get(data[0]+data[1]+data[2]);
 			cCourse.setName(data[3]);
 			cCourse.setCredits(new Integer(data[4]));
-			
-			//Grade Methods
-			String[] gMeth = data[5].split(",");
-			List<String> gMethConvert = new ArrayList<>();
-			for (String g : gMeth)
-				gMethConvert.add(g);
-			cCourse.setGradeMethods(gMethConvert);
-			
+			cCourse.setGradeMethods(Arrays.asList(data[5]));
 			cCourse.setDescription(data[6]);
 			
-			//PREQ, CORQ, REST, ALTS
+			//TODO: PREQ
+			//TODO: CORQ
+			//TODO: REST
+			String[] alts = data[10].split(","); //Alternates
+			List<Course> altNames = new ArrayList<>();
+			for (String a : alts) {
+				altNames.add(courses.get(a));
+			}
+			cCourse.setAlternates(altNames);
 			
 			cCourse.setGened(data[11]);
 		}
