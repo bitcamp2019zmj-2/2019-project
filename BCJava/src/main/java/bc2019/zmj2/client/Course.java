@@ -16,6 +16,7 @@ public class Course implements Requirable {
 	
 	private Map<Requirable, Grade> prereqs; //AND conditions, OR done by Group
 	private List<Course> coreqs;
+	@Deprecated
 	private List<Requirable> restrictions;
 	private List<String> deptForbidden;
 	private List<String> majorForbidden;
@@ -34,7 +35,9 @@ public class Course implements Requirable {
 		this.description = null;
 		this.prereqs = null;
 		this.coreqs = null;
-		this.restrictions = null;
+		this.deptForbidden = null;
+		this.majorForbidden = null;
+		this.requiredMajor = null;
 		this.alternates = null;
 		this.gened = null;
 	}
@@ -42,7 +45,8 @@ public class Course implements Requirable {
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,
 			Map<Requirable,Grade> prereqs, List<Course> coreqs,
-			List<Requirable> restrictions, List<Course> alternates, String gened) {
+			List<String> deptForbidden, List<String> majorForbidden,
+			List<String> requiredMajor, List<Course> alternates, String gened) {
 		this.dept = dept;
 		this.number = number;
 		this.suffix = suffix;
@@ -52,7 +56,9 @@ public class Course implements Requirable {
 		this.description = description;
 		this.prereqs = prereqs;
 		this.coreqs = coreqs;
-		this.restrictions = restrictions;
+		this.deptForbidden = deptForbidden;
+		this.majorForbidden = majorForbidden;
+		this.requiredMajor = requiredMajor;
 		this.alternates = alternates;
 		this.gened = gened;
 	}
@@ -67,7 +73,9 @@ public class Course implements Requirable {
 		this.description = "Blank Description";
 		this.prereqs = null;
 		this.coreqs = null;
-		this.restrictions = null;
+		this.deptForbidden = null;
+		this.majorForbidden = null;
+		this.requiredMajor = null;
 		this.alternates = null;
 		this.gened = "";
 	}
@@ -137,10 +145,12 @@ public class Course implements Requirable {
 		this.coreqs = coreqs;
 	}
 
+	@Deprecated
 	public List<Requirable> getRestrictions() {
 		return restrictions;
 	}
 
+	@Deprecated
 	public void setRestrictions(List<Requirable> restrictions) {
 		this.restrictions = restrictions;
 	}
@@ -179,6 +189,30 @@ public class Course implements Requirable {
 
 	public String getSuffix() {
 		return suffix;
+	}
+
+	public List<String> getDeptForbidden() {
+		return deptForbidden;
+	}
+
+	public void setDeptForbidden(List<String> deptForbidden) {
+		this.deptForbidden = deptForbidden;
+	}
+
+	public List<String> getMajorForbidden() {
+		return majorForbidden;
+	}
+
+	public void setMajorForbidden(List<String> majorForbidden) {
+		this.majorForbidden = majorForbidden;
+	}
+
+	public List<String> getRequiredMajor() {
+		return requiredMajor;
+	}
+
+	public void setRequiredMajor(List<String> requiredMajor) {
+		this.requiredMajor = requiredMajor;
 	}
 	
 }
