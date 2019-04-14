@@ -30,8 +30,7 @@ public class FXML2Controller {
 
 	    @FXML
 	    private Button RegisterButton;
-	    
-	   
+
 
 	    @FXML
 	    void RegisteredUser(ActionEvent event) throws IOException {
