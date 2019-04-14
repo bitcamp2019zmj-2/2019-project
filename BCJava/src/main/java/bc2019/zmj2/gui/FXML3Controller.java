@@ -46,6 +46,7 @@ public class FXML3Controller {
     	name_info.setText("Name: " + User.getSessionUser().getName());
     	email_info.setText("Email: " + User.getSessionUser().getEmail());
     	major_info.setText("Major: " + User.getSessionUser().getMajor());
+    	
     }
 
 }

@@ -22,4 +22,8 @@ public class AuthUser extends User {
 		//verify
 	}
 
+	public String getEmail() {
+		return authObject.get("email").getAsString();
+	}
+	
 }
