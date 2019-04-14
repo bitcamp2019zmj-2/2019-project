@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2e2e42; -fx-border-color: #1a2538;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Rgst" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2e2e42; -fx-border-color: #1a2538;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="222.0" layoutY="41.0" style="-fx-font-family: calibri;" text="Sign Up " textFill="#c16f30">
          <font>
@@ -45,7 +45,7 @@
             <DropShadow blurType="ONE_PASS_BOX" color="#805e37" height="3.8" radius="5.7" />
          </effect>
       </Label>
-      <Button fx:id="SignUpButton" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" text="Sign Up!" />
+      <Button fx:id="RegisterButton" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" text="Register" />
       <Label layoutX="365.0" layoutY="8.0" prefHeight="92.0" prefWidth="90.0" text="✍" textFill="WHITE">
          <font>
             <Font size="79.0" />

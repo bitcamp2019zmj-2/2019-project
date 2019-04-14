@@ -8,6 +8,8 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label;
+
 import bc2019.zmj2.util.LoginException;
 import bc2019.zmj2.util.Util;
 import javafx.event.ActionEvent;
@@ -21,23 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLController {
-	
-	// Sign Up box
 
-    @FXML
-    private TextField SignUpVerify_txtbox;
-
-    @FXML
-    private TextField signUpPass_txtbox;
-
-    @FXML
-    private TextField signUpEmailAddress_txtbox;
-
-    @FXML
-    private Button SignUpButton;
-	
-	
-	
 	
 	
 	// brainstorm stuff
@@ -103,6 +89,39 @@ public class FXMLController {
     	BrainStormLoginPane.getChildren().setAll(pane);
 
     }
+    
+    
+    
+	
+	// Sign Up box
+
+    @FXML
+    private TextField SignUpVerify_txtbox;
+
+    @FXML
+    private TextField signUpPass_txtbox;
+
+    @FXML
+    private TextField signUpEmailAddress_txtbox;
+
+    @FXML
+    private Button RegisterButton;
+    
+    
+  
+    // Course box 
+    // usersEmail is part of Info box
+    // course tab and info tab
+
+    @FXML
+    private Label planCoursesBox;
+
+    @FXML
+    private Label intialPicture;
+
+    @FXML
+    private Label usersEmail;
+
     
     
 }
