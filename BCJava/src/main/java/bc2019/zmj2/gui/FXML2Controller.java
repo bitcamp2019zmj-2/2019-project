@@ -21,6 +21,15 @@ public class FXML2Controller {
 
     @FXML
     private AnchorPane SignUpPane;
+    
+    
+    
+    
+    @FXML
+    private TextField signUpMajor_txtbox;
+
+    @FXML
+    private TextField SignUpName_txtbox;
 
 	    @FXML
 	    private TextField SignUpVerify_txtbox;
