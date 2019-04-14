@@ -4,8 +4,11 @@ import javax.swing.SwingUtilities;
 
 import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class FXML3Controller {
@@ -43,6 +46,13 @@ public class FXML3Controller {
     
     @FXML
     private Label major_info;
+    
+    @FXML
+    private TextField deptBox;
+
+    @FXML
+    private TextField codeBox;
+
 
     public void updateInfo() {
     	NameInputHerePls.setText(User.getSessionUser().getName());
@@ -51,4 +61,19 @@ public class FXML3Controller {
     	
     }
 
+    @FXML
+    private Button addButt;
+    
+    @FXML
+    private Button searchButt;
+    
+    @FXML
+    void searchClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void submitClick(MouseEvent event) {
+
+    }
 }

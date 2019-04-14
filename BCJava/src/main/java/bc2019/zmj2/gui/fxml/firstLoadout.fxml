@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollBar?>
@@ -48,13 +48,14 @@
                      </effect>
                   </Label>
                   <Separator layoutX="14.0" layoutY="55.0" prefHeight="29.0" prefWidth="570.0" />
-                  <ChoiceBox layoutX="31.0" layoutY="167.0" prefWidth="150.0" AnchorPane.topAnchor="167.0" />
-                  <ChoiceBox layoutX="196.0" layoutY="167.0" prefWidth="150.0" />
-                  <Button layoutX="383.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #c16f30; -fx-font-family: calibri; -fx-border-color: #935729;" text="Search" textFill="WHITE" />
+                  <Button fx:id="searchButt" layoutX="351.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#searchClick" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: #c16f30; -fx-font-family: calibri; -fx-border-color: #935729;" text="Search" textFill="WHITE" />
                   <Label layoutX="31.0" layoutY="145.0" text="Department" textFill="WHITE" />
                   <Label layoutX="196.0" layoutY="145.0" text="Code" textFill="WHITE" />
                   <ScrollBar layoutX="586.0" orientation="VERTICAL" prefHeight="372.0" prefWidth="14.0" />
                   <Pane fx:id="course_desc" layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;" />
+                  <TextField fx:id="deptBox" layoutX="31.0" layoutY="168.0" />
+                  <TextField fx:id="codeBox" layoutX="192.0" layoutY="168.0" />
+                  <Button fx:id="addButt" layoutX="457.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#submitClick" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #c16f30; -fx-font-family: calibri; -fx-border-color: #935729;" text="Submit" textFill="WHITE" />
                </children></AnchorPane>
       </content>
     </Tab>
