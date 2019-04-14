@@ -15,7 +15,7 @@ public class Course implements Requirable {
 	private String description;
 	
 	private Map<Requirable, Grade> prereqs;
-	private List<Requirable> coreqs;
+	private List<Course> coreqs;
 	private List<Requirable> restrictions;
 	private List<Course> alternates;
 	
@@ -24,8 +24,8 @@ public class Course implements Requirable {
 	
 	public Course(String dept, int number, String suffix,
 			String name, int credits, List<String> gradeMethods, String description,
-			Map<Requirable,Grade> prereqs, List<Requirable> coreqs,
-			List<Requirable> restrictions, List<Requirable> alternates, String gened) {
+			Map<Requirable,Grade> prereqs, List<Course> coreqs,
+			List<Requirable> restrictions, List<Course> alternates, String gened) {
 		this.dept = dept;
 		this.number = number;
 		this.suffix = suffix;
@@ -112,11 +112,11 @@ public class Course implements Requirable {
 		this.prereqs = prereqs;
 	}
 
-	public List<Requirable> getCoreqs() {
+	public List<Course> getCoreqs() {
 		return coreqs;
 	}
 
-	public void setCoreqs(List<Requirable> coreqs) {
+	public void setCoreqs(List<Course> coreqs) {
 		this.coreqs = coreqs;
 	}
 
@@ -128,7 +128,7 @@ public class Course implements Requirable {
 		this.restrictions = restrictions;
 	}
 
-	public List<Requirable> getAlternates() {
+	public List<Course> getAlternates() {
 		return alternates;
 	}
 

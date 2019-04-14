@@ -50,8 +50,15 @@ public class Database {
 			
 			//TODO: PREQ
 			//TODO: CORQ
+			String[] corq = data[8].split(" ");
+			List<Course> corqCourses = new ArrayList<>();
+			for (String c : corq) {
+				corqCourses.add(courses.get(c));
+			}
+			cCourse.setCoreqs(corqCourses);
+			
 			//TODO: REST
-			String[] alts = data[10].split(","); //Alternates
+			String[] alts = data[10].split(" "); //Alternates
 			List<Course> altNames = new ArrayList<>();
 			for (String a : alts) {
 				altNames.add(courses.get(a));
