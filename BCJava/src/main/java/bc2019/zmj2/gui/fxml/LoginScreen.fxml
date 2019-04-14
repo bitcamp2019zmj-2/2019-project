@@ -46,7 +46,7 @@
             <DropShadow blurType="ONE_PASS_BOX" color="#805e37" height="10.5" radius="5.8325" spread="0.15" width="14.83" />
          </effect></Label>
       <ImageView fitHeight="314.0" fitWidth="200.0" layoutX="14.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="orangeSignUpButton" layoutX="302.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#clickedSignUp" style="-fx-background-color: #f48c42; -fx-font-size: calibri; -fx-border-color: #c16f30;" text="Sign Up" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="orangeSignUpButton" layoutX="302.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#clickedSignUp" style="-fx-background-color: #f48c42; -fx-font-size: calibri; -fx-border-color: #c16f30;" text="Sign Up" textAlignment="CENTER" textFill="WHITE" />
       <Label layoutX="72.0" layoutY="50.0" prefHeight="181.0" prefWidth="124.0" text="💡" textFill="WHITE">
          <font>
             <Font size="96.0" />

@@ -45,13 +45,21 @@
             <DropShadow blurType="ONE_PASS_BOX" color="#805e37" height="3.8" radius="5.7" />
          </effect>
       </Label>
-      <Button fx:id="RegisterButton" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" text="Register" />
-      <Label layoutX="365.0" layoutY="8.0" prefHeight="92.0" prefWidth="90.0" text="✍" textFill="WHITE">
+      <Button fx:id="RegisterButton" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" style="-fx-background-color: #f48c42; -fx-border-color: #c16f30; -fx-font-family: calibri;" text="Register !" textFill="WHITE" />
+      <Label layoutX="379.0" layoutY="8.0" prefHeight="92.0" prefWidth="90.0" text="⇣" textFill="WHITE">
          <font>
             <Font size="79.0" />
          </font>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#ff702e" height="14.0" radius="4.25" width="5.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="#79432c" height="9.5" radius="3.125" width="5.0" />
+         </effect>
+      </Label>
+      <Label layoutX="14.0" layoutY="327.0" text="💡" textFill="WHITE">
+         <font>
+            <Font size="41.0" />
+         </font>
+         <effect>
+            <DropShadow color="#724444" />
          </effect>
       </Label>
    </children>
