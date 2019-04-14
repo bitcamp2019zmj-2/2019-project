@@ -22,6 +22,7 @@ public class MainAppx extends Application {
 		
 	}
 
+	
 	private void showLoginScreen() throws IOException {
 		
 		//load doc into main class

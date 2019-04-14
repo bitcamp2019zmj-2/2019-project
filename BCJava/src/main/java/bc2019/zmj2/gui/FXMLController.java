@@ -22,6 +22,26 @@ import javafx.scene.layout.AnchorPane;
 
 public class FXMLController {
 	
+	// Sign Up box
+
+    @FXML
+    private TextField SignUpVerify_txtbox;
+
+    @FXML
+    private TextField signUpPass_txtbox;
+
+    @FXML
+    private TextField signUpEmailAddress_txtbox;
+
+    @FXML
+    private Button SignUpButton;
+	
+	
+	
+	
+	
+	// brainstorm stuff
+    
     @FXML
     private AnchorPane BrainStormLoginPane;
 	
