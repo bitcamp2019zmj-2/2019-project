@@ -8,6 +8,7 @@ import bc2019.zmj2.client.Database;
 import bc2019.zmj2.client.PlannedCourse;
 import bc2019.zmj2.client.Season;
 import bc2019.zmj2.client.User;
+import bc2019.zmj2.util.Util;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -100,9 +101,9 @@ public class FXML3Controller {
     		if(pl == null) {
     			pl = new ArrayList<PlannedCourse>();
     		}
-    		pl.add(new PlannedCourse(currentCourse.getName(), 2019, Season.FALL));
+    		pl.add(new PlannedCourse(currentCourse.getDept().toLowerCase() + currentCourse.getNumber(), 2019, Season.FALL, currentCourse));
     		User.getSessionUser().setPlanned(pl);
-    		User.getSessionUser().updateUser();
+    		Util.updateUser(User.getSessionUser());
     	}
     }
 }

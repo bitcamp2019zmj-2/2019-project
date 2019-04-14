@@ -12,6 +12,13 @@ public class PlannedCourse {
 		this.season = season;
 		this.credits = Database.getCourse(name).getCredits();
 	}
+	
+	public PlannedCourse(String name, int year, Season season, Course c) {
+		this.name = name;
+		this.year = year;
+		this.season = season;
+		this.credits = c.getCredits();
+	}
 
 	public int getCredits() {
 		return credits;
