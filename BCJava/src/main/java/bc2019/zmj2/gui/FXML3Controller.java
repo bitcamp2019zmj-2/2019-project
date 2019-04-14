@@ -39,12 +39,15 @@ public class FXML3Controller {
     private Pane course_desc;
 
     @FXML
+    private Label usersEmail;
+    
+    @FXML
     private Label major_info;
 
     public void updateInfo() {
-    	name_info.setText("Name: " + User.getSessionUser().getName());
-    	email_info.setText("Email: " + User.getSessionUser().getEmail());
-    	major_info.setText("Major: " + User.getSessionUser().getMajor());
+    	NameInputHerePls.setText(User.getSessionUser().getName());
+    	usersEmail.setText(User.getSessionUser().getEmail());
+    	MajorHerePls.setText(User.getSessionUser().getMajor());
     	
     }
 
