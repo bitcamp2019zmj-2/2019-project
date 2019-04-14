@@ -3,6 +3,10 @@ package bc2019.zmj2.gui;
 import java.io.IOException;
 import java.net.URL;
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label;
+import com.google.gson.JsonObject;
+
+import bc2019.zmj2.client.Database;
 import bc2019.zmj2.util.SignupException;
 import bc2019.zmj2.util.Util;
 import javafx.event.ActionEvent;
@@ -25,11 +29,6 @@ public class FXML2Controller {
     
     
     
-    @FXML
-    private TextField signUpMajor_txtbox;
-
-    @FXML
-    private TextField SignUpName_txtbox;
 
 	    @FXML
 	    private TextField SignUpVerify_txtbox;
@@ -42,6 +41,27 @@ public class FXML2Controller {
 
 	    @FXML
 	    private Button RegisterButton;
+	    
+	    
+	  //COURSE + INFO PANE
+	    // ALLOW THE NAME AND MAJOR AND EMAIL TO BE SET INTO INFO PANE
+	    // THERE IS A DESCRIPTION BOX BUT THAT'S FOR LATER IG IF YOU WANT
+	    // MEH... 
+	    
+
+	    @FXML
+	    private Label usersEmail;
+
+	    @FXML
+	    private Label NameInputHerePls;
+
+	    @FXML
+	    private Label MajorHerePls;
+	    
+	    @FXML
+	    private Label UserDescriptionBoxPls;
+
+	
 
 
 	    @FXML
@@ -60,10 +80,15 @@ public class FXML2Controller {
 					e.printStackTrace();
 				}
 	    	}
-
 	    }
+	    
 
-	}
 
+
+}
+	    
+	    
+
+	    
 
 
