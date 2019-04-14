@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.effect.DropShadow?>
@@ -26,12 +24,6 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton layoutX="36.0" layoutY="95.0" mnemonicParsing="false" text="SplitMenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </SplitMenuButton>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -46,7 +38,7 @@
                      </font>
                   </Label>
                   <Label layoutX="25.0" layoutY="232.0" prefHeight="17.0" prefWidth="39.0" text="Email:" textFill="WHITE" />
-                  <Label layoutX="73.0" layoutY="232.0" text="user input here" textFill="WHITE" />
+                  <Label layoutX="73.0" layoutY="232.0" prefHeight="17.0" prefWidth="122.0" textFill="WHITE" />
                </children>
             </AnchorPane>
          </content>
