@@ -5,23 +5,23 @@ import java.util.List;
 public class Major {
 	private String name;
 //	private List<Requirable> reqs;
-	private List<Course> courseReqs;
+	private List<CourseRef> courseReqs;
 	private List<Group> groupReqs;
 	
 	public Major() {
 		this.name = null;
-		this.courseReqs = new ArrayList<Course>();
+		this.courseReqs = new ArrayList<CourseRef>();
 		this.groupReqs = new ArrayList<Group>();
 	}
 	
 	public Major(String name) {
 		this.name = name;
 //		this.reqs = new ArrayList<Requirable>();
-		this.courseReqs = new ArrayList<Course>();
+		this.courseReqs = new ArrayList<CourseRef>();
 		this.groupReqs = new ArrayList<Group>();
 	}
 	
-	public Major(String name, List<Course> courses, List<Group> groups) {
+	public Major(String name, List<CourseRef> courses, List<Group> groups) {
 		this.name = name;
 		this.courseReqs = courses;
 		this.groupReqs = groups;
@@ -31,6 +31,15 @@ public class Major {
 		return this.name;
 	}
 	
+	public List<CourseRef> getCourses() {
+		return courseReqs;
+	}
+	
+	public List<Group> getGroups() {
+		return groupReqs;
+	}
+	
+	
 	//Gets an array of all unmet requirements for a student in this major
 	public List<Requirable> getUncompletedReqs(User u){
 		List<Requirable> output = new ArrayList<Requirable>();
@@ -39,7 +48,7 @@ public class Major {
 				output.add(r);
 			}
 		}
-		for(Course r : this.courseReqs) {
+		for(CourseRef r : this.courseReqs) {
 			if(!r.reqMet(u)) {
 				output.add(r);
 			}
@@ -52,7 +61,7 @@ public class Major {
 		for(Group r : this.groupReqs) {
 			output.add(r);
 		}
-		for(Course r : this.courseReqs) {
+		for(CourseRef r : this.courseReqs) {
 			output.add(r);
 		}
 		return output;
