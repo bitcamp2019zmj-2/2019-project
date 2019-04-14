@@ -2,6 +2,7 @@ package bc2019.zmj2.gui;
 
 import javax.swing.SwingUtilities;
 
+import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -18,7 +19,7 @@ public class FXML3Controller {
     private Label intialPicture;
 
     @FXML
-    private Label usersEmail;
+    private java.awt.Label usersEmail;
 
     @FXML
     private Label name_info;
@@ -33,7 +34,9 @@ public class FXML3Controller {
     private Label MajorHerePls1;
 
     public void updateInfo() {
-    	name_info.setText("but it works");
+    	name_info.setText("Name: " + User.getSessionUser().getName());
+    	email_info.setText("Email: " + User.getSessionUser().getEmail());
+    	major_info.setText("Major: " + User.getSessionUser().getMajor());
     }
 
 }
