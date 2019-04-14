@@ -76,7 +76,7 @@ public class Util {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_NOT_FOUND":
 					throw new LoginException("Email not found");
@@ -106,7 +106,7 @@ public class Util {
 			//failed
 			if(response.isJsonObject()) {
 				JsonObject o = (JsonObject)response;
-				String errorType = o.get("error").getAsString();
+				String errorType = o.get("error").getAsJsonObject().get("message").getAsString();
 				switch(errorType) {
 				case "EMAIL_EXISTS":
 					throw new SignupException("Email Already Exists");
