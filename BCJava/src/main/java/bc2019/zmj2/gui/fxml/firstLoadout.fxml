@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
@@ -52,7 +53,10 @@
                   <Label layoutX="31.0" layoutY="145.0" text="Department" textFill="WHITE" />
                   <Label layoutX="196.0" layoutY="145.0" text="Code" textFill="WHITE" />
                   <ScrollBar layoutX="586.0" orientation="VERTICAL" prefHeight="372.0" prefWidth="14.0" />
-                  <Pane fx:id="course_desc" layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;" />
+                  <Pane fx:id="course_desc" layoutX="27.0" layoutY="214.0" opacity="0.6" prefHeight="140.0" prefWidth="526.0" style="-fx-background-color: #516c91;">
+                     <children>
+                        <TextArea fx:id="TEXTarea" disable="true" layoutX="5.0" layoutY="-1.0" prefHeight="143.0" prefWidth="516.0" wrapText="true" />
+                     </children></Pane>
                   <Button fx:id="addButt" layoutX="457.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#submitClick" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #c16f30; -fx-font-family: calibri; -fx-border-color: #935729;" text="Submit" textFill="WHITE" />
                   <TextField fx:id="deptBox" layoutX="27.0" layoutY="168.0" prefHeight="26.0" prefWidth="102.0" />
                   <TextField fx:id="codeBox" layoutX="192.0" layoutY="168.0" prefHeight="26.0" prefWidth="99.0" />

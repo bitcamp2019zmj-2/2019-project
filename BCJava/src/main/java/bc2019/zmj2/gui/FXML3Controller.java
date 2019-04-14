@@ -1,17 +1,28 @@
 package bc2019.zmj2.gui;
 
-import javax.swing.SwingUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
+import bc2019.zmj2.client.Course;
+import bc2019.zmj2.client.Database;
+import bc2019.zmj2.client.PlannedCourse;
+import bc2019.zmj2.client.Season;
 import bc2019.zmj2.client.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class FXML3Controller {
+	
+	
+    @FXML
+    private TextArea TEXTarea;
+
 
     @FXML
     private Label planCoursesBox;
@@ -67,13 +78,31 @@ public class FXML3Controller {
     @FXML
     private Button searchButt;
     
+    
+    private Course currentCourse;
+    
     @FXML
     void searchClick(MouseEvent event) {
-
+    	String dept = deptBox.getText();
+    	String codeStr = codeBox.getText();
+    	int code = Integer.parseInt(codeStr);
+    	Course course = Database.getCourse(dept.trim() + code);
+    	currentCourse = course;
+    	TEXTarea.setText(course.getDescription());
+    	TEXTarea.setDisable(false);
+    	TEXTarea.setEditable(false);
     }
 
     @FXML
     void submitClick(MouseEvent event) {
-
+    	if(currentCourse!=null) {
+    		List<PlannedCourse> pl = User.getSessionUser().getPlanned();
+    		if(pl == null) {
+    			pl = new ArrayList<PlannedCourse>();
+    		}
+    		pl.add(new PlannedCourse(currentCourse.getName(), 2019, Season.FALL));
+    		User.getSessionUser().setPlanned(pl);
+    		User.getSessionUser().updateUser();
+    	}
     }
 }
