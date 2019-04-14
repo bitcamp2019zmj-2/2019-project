@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-#https://app.testudo.umd.edu/soc/201908/CMSC
 def parse(dept):
     url = r'https://app.testudo.umd.edu/soc/201908/'+dept
 
@@ -51,12 +50,17 @@ def parse(dept):
                     #Prereq, Coreq, Restrict, Alternate names
                     if ('Prerequisite' in b):
                         csv_newline[7] = '"'+b[14:]+'"'
+                        csv_newline[7] = csv_newline[7].replace('minimum grade of ','')
                     elif ('Corequisite' in b):
                         csv_newline[8] = '"'+b[13:]+'"'
+                        csv_newline[8] = csv_newline[8].replace('.','')
                     elif ('Restriction' in b):
                         csv_newline[9] = '"'+b[13:]+'"'
                     elif ('Credit only granted for' in b):
                         csv_newline[10] = '"'+b[25:]+'"'
+                        csv_newline[10] = csv_newline[10].replace(' or','')
+                        csv_newline[10] = csv_newline[10].replace('.','')
+                        csv_newline[10] = csv_newline[10].replace(',','')
 
             c_desc = ublock('div',class_='approved-course-text')[desc_num].string
         except AttributeError: #Initial DESC pass failed
@@ -75,8 +79,8 @@ def parse(dept):
     #Output data to CSV file
     f_out = open('classes-'+dept+'.csv','w')
     for l in csvout:
-        for c in l:
-            print(c,end=',',file=f_out)
+        for c in l: #Includes ',' -> '§' for ease on the Java end
+            print(c.replace(',','§'),end=',',file=f_out)
         print(file=f_out)
     f_out.close()
 
