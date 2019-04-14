@@ -16,8 +16,6 @@ public class Course implements Requirable {
 	
 	private Map<Requirable, Grade> prereqs; //AND conditions, OR done by Group
 	private List<Course> coreqs;
-	@Deprecated
-	private List<Requirable> restrictions;
 	private List<String> deptForbidden;
 	private List<String> majorForbidden;
 	private List<String> requiredMajor;
@@ -143,16 +141,6 @@ public class Course implements Requirable {
 
 	public void setCoreqs(List<Course> coreqs) {
 		this.coreqs = coreqs;
-	}
-
-	@Deprecated
-	public List<Requirable> getRestrictions() {
-		return restrictions;
-	}
-
-	@Deprecated
-	public void setRestrictions(List<Requirable> restrictions) {
-		this.restrictions = restrictions;
 	}
 
 	public List<Course> getAlternates() {
