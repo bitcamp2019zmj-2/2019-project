@@ -49,6 +49,10 @@ public class Database {
 			cCourse.setDescription(data[6]);
 			
 			//TODO: PREQ
+			String preqdata = data[7];
+			//preqdata = preqdata.replaceAll("([A-Z].) in ("+dept+"[0-9]{3}[A-Z]?)", "\\[$2\\]$1");
+			//preqdata = preqdata.replace("Minimum grade of ", "");
+			
 			String[] corq = data[8].split(" "); //Corequisites
 			List<Course> corqCourses = new ArrayList<>();
 			for (String c : corq) {
