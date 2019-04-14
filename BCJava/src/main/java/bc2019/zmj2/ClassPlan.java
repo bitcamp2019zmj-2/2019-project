@@ -8,6 +8,7 @@ import bc2019.zmj2.client.Group;
 import bc2019.zmj2.client.Major;
 import bc2019.zmj2.gui.MainAppx;
 import bc2019.zmj2.util.Util;
+import bc2019.zmj2.util.WebUtil;
 
 public class ClassPlan {
     public boolean someLibraryMethod() {
@@ -27,8 +28,9 @@ public class ClassPlan {
     	greqs.add(x);
     	
     	Major m = new Major("CMSC",creqs,greqs);
-    	
-//    	MainAppx.begin(args);
+    	WebUtil.init();
+    	Util.init();
+    	MainAppx.begin(args);
     	
     	try {
 			Util.login("johndoe@email.com", "1234561");

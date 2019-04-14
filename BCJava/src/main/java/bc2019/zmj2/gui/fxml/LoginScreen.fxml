@@ -36,7 +36,7 @@
                </effect></Label>
             <TextField fx:id="txt_firstName" GridPane.columnIndex="1" />
             <Button fx:id="btn_showName" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onClick_showName" prefHeight="15.0" prefWidth="248.0" style="-fx-background-color: #f48c42; -fx-font-family: calibri; -fx-border-color: #c16f30;" text="Enter" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Label alignment="CENTER" layoutX="300.0" layoutY="83.0" lineSpacing="2.0" prefHeight="50.0" prefWidth="248.0" style="-fx-font-family: calibri;" text="Brainstorm ⚡" textAlignment="CENTER" textFill="#c16f30">
