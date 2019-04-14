@@ -26,16 +26,19 @@ public class Database {
 	}
 
 	public static void getFromCSV(String dept) {
+		courses = new HashMap<>();
 		//TODO: Parse data pulled from CSV file, necessary only if web-scraping script has to be run manually
 		File f = new File("classes-"+dept+".csv");
 		List<String[]> fullData = new ArrayList<String[]>();
 		try (Scanner s = new Scanner(f)) {
+			s.nextLine();
 			while (s.hasNextLine()) {
 				String line = s.nextLine();
 				String[] rawData = line.split(",");
-				for (String q : rawData) {
-					q = q.replace('*', ','); //Patchy way to deal with CSV delimiter
+				for (int i=0; i < rawData.length; i++) {
+					rawData[i] = rawData[i].replace('*', ',').trim(); //Patchy way to deal with CSV delimiter
 				}
+				fullData.add(rawData);
 				courses.put(rawData[0]+rawData[1]+rawData[2],
 						new Course(rawData[0],new Integer(rawData[1]),rawData[2]));
 			}
