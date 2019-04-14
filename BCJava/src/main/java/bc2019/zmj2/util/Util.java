@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
@@ -24,6 +23,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import bc2019.zmj2.client.AuthUser;
+import bc2019.zmj2.client.Course;
 import bc2019.zmj2.client.Database;
 import bc2019.zmj2.client.User;
 
@@ -161,14 +161,10 @@ public class Util {
 		CollectionReference rootRef = WebUtil.getDB().collection(collections[0]);
 		ApiFuture<DocumentSnapshot> future = rootRef.document(collections[1]).get();
 		try {
-			Gson gs = new Gson();
 			DocumentSnapshot doc = future.get();
-			if(doc.exists()) {
-				Map<String,Object> myMap = future.get().getData();
-				
-			} else {
-				System.out.println("big oof");
-			}
+			Course courseObj = doc.toObject(Course.class);
+			System.out.println("epic");
+			System.out.println(courseObj.getCredits());
 			return null;
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
