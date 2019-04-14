@@ -75,6 +75,7 @@ public class Database {
 			String[] andPreq = preqdata.split(" ");
 			for (String a : andPreq)
 				preqs.put(courses.get(a),Grade.CM);
+			cCourse.setPrereqs(preqs);
 			
 			String[] corq = data[8].split(" "); //Corequisites
 			List<Course> corqCourses = new ArrayList<>();
