@@ -5,6 +5,9 @@ import java.util.List;
 import com.google.gson.JsonObject;
 
 public class User {
+	
+	private static AuthUser sessionUser;
+	
 	private String name, major;
 	private List<StoredCourse> taken, planned;
 	
@@ -110,5 +113,12 @@ public class User {
 		return total;
 	}
 
+	public static void setSessionUser(AuthUser u) {
+		sessionUser = u;
+	}
+	
+	public static AuthUser getSessionUser() {
+		return sessionUser;
+	}
 
 }

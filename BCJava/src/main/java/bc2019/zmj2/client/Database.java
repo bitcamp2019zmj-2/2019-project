@@ -154,7 +154,7 @@ public class Database {
 			
 			cCourse.setGened(data[11]);
 		}
-		writeCoursesToDb();
+//		writeCoursesToDb();
 	}
 	
 	private static void writeCoursesToDb() {
@@ -189,22 +189,84 @@ public class Database {
 
 	public static AuthUser getUser(String user, JsonObject response) {
 		//if no user, create user
-		DocumentSnapshot userShot = Util.retrieve("users/"+response.get("localId").getAsString(), response);
+//		DocumentSnapshot userShot = Util.retrieve("users/"+response.get("localId").getAsString(), response);
+		DocumentSnapshot userShot = Util.retrieve("users/0", response);
+		AuthUser ret = null;
 		if(userShot.exists()) {
 			//user is real
 			String name = userShot.getString("name");
 			String major = userShot.getString("major");
-			userShot.get("taken");
-		} else {
+			List<StoredCourse> takenCourses = new ArrayList<StoredCourse>();
+			List<StoredCourse> plannedCourses = new ArrayList<StoredCourse>();
+			Map<String,Object> usermap = userShot.getData();
+			ArrayList takendata = (ArrayList)usermap.get("taken");
+			ArrayList planneddata = (ArrayList)usermap.get("planned");
+			for(Object dataStr : takendata) {
+				String val = (String)dataStr;
+				val = val.replace("{", "").replace("}", "").trim();
+				String[] vals = val.split(", ");
+				int year = 0;
+				String cName = "";
+				Grade g = Grade.F;
+				Season season = Season.WINTER;
+				for(String s : vals) {
+					String[] keyPair = s.split("=");
+					switch(keyPair[0]) {
+					case "year":
+						year = Integer.parseInt(keyPair[1]);
+						break;
+					case "name":
+						cName = keyPair[1];
+						break;
+					case "grade":
+						g = Grade.valueOf(keyPair[1]);
+						break;
+					case "season":
+						season = Season.valueOf(keyPair[1]);
+						break;
+					}
+				}
+				takenCourses.add(new StoredCourse(cName, g, year, season));
+			}
+			for(Object dataStr : planneddata) {
+				String val = (String)dataStr;
+				val = val.replace("{", "").replace("}", "").trim();
+				String[] vals = val.split(", ");
+				int year = 0;
+				String cName = "";
+				Grade g = Grade.F;
+				Season season = Season.WINTER;
+				for(String s : vals) {
+					String[] keyPair = s.split("=");
+					switch(keyPair[0]) {
+					case "year":
+						year = Integer.parseInt(keyPair[1]);
+						break;
+					case "name":
+						cName = keyPair[1];
+						break;
+					case "grade":
+						g = Grade.valueOf(keyPair[1]);
+						break;
+					case "season":
+						season = Season.valueOf(keyPair[1]);
+						break;
+					}
+				}
+				plannedCourses.add(new StoredCourse(cName, g, year, season));
+			}
+			ret = new AuthUser(name, major, takenCourses, plannedCourses, response);
 			
 		}
-		return new AuthUser(user,user, response);
+		User.setSessionUser(ret);
+		return ret;
 	}
 	
-	public static AuthUser createUser(String major, String name, JsonObject response) {
+	public static AuthUser createUser(String name, String major, JsonObject response) {
 		//create!
 		AuthUser newUser = new AuthUser(name, major, response);
 		Util.write("users/"+response.get("localId").getAsString(), (User)newUser);
+		User.setSessionUser(newUser);
 		return newUser;
 	}
 	
@@ -214,6 +276,10 @@ public class Database {
 	
 	public static void addGroup(String name, Group group) {
 		groups.put(name, group);
+	}
+	
+	public static void main(String[] args) {
+		getUser("",null);
 	}
 }
 
