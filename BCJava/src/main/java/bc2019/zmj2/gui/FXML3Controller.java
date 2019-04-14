@@ -88,10 +88,13 @@ public class FXML3Controller {
     	String codeStr = codeBox.getText();
     	int code = Integer.parseInt(codeStr);
     	Course course = Database.getCourse(dept.trim() + code);
-    	currentCourse = course;
-    	TEXTarea.setText(course.getDescription());
-    	TEXTarea.setDisable(false);
-    	TEXTarea.setEditable(false);
+    	TEXTarea.clear();
+    	if(course != null) {
+	    	currentCourse = course;
+	    	TEXTarea.setText(course.getDescription());
+	    	TEXTarea.setDisable(false);
+	    	TEXTarea.setEditable(false);
+    	}
     }
 
     @FXML
@@ -103,7 +106,7 @@ public class FXML3Controller {
     		}
     		pl.add(new PlannedCourse(currentCourse.getDept().toLowerCase() + currentCourse.getNumber(), 2019, Season.FALL, currentCourse));
     		User.getSessionUser().setPlanned(pl);
-    		Util.updateUser(User.getSessionUser());
+    		//Util.updateUser(User.getSessionUser());
     	}
     }
 }
