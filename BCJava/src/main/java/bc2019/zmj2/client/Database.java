@@ -202,57 +202,27 @@ public class Database {
 			ArrayList takendata = (ArrayList)usermap.get("taken");
 			ArrayList planneddata = (ArrayList)usermap.get("planned");
 			for(Object dataStr : takendata) {
-				String val = (String)dataStr;
-				val = val.replace("{", "").replace("}", "").trim();
-				String[] vals = val.split(", ");
+				Map<String,Object> val = (Map<String,Object>)dataStr;
 				int year = 0;
 				String cName = "";
 				Grade g = Grade.F;
 				Season season = Season.WINTER;
-				for(String s : vals) {
-					String[] keyPair = s.split("=");
-					switch(keyPair[0]) {
-					case "year":
-						year = Integer.parseInt(keyPair[1]);
-						break;
-					case "name":
-						cName = keyPair[1];
-						break;
-					case "grade":
-						g = Grade.valueOf(keyPair[1]);
-						break;
-					case "season":
-						season = Season.valueOf(keyPair[1]);
-						break;
-					}
-				}
+				year = Integer.parseInt((String)val.get("year"));
+				cName = (String)val.get("name");
+				g = Grade.valueOf((String)val.get("grade"));
+				season = Season.valueOf((String)val.get("season"));
 				takenCourses.add(new StoredCourse(cName, g, year, season));
 			}
 			for(Object dataStr : planneddata) {
-				String val = (String)dataStr;
-				val = val.replace("{", "").replace("}", "").trim();
-				String[] vals = val.split(", ");
+				Map<String,Object> val = (Map<String,Object>)dataStr;
 				int year = 0;
 				String cName = "";
 				Grade g = Grade.F;
 				Season season = Season.WINTER;
-				for(String s : vals) {
-					String[] keyPair = s.split("=");
-					switch(keyPair[0]) {
-					case "year":
-						year = Integer.parseInt(keyPair[1]);
-						break;
-					case "name":
-						cName = keyPair[1];
-						break;
-					case "grade":
-						g = Grade.valueOf(keyPair[1]);
-						break;
-					case "season":
-						season = Season.valueOf(keyPair[1]);
-						break;
-					}
-				}
+				year = Integer.parseInt((String)val.get("year"));
+				cName = (String)val.get("name");
+				g = Grade.valueOf((String)val.get("grade"));
+				season = Season.valueOf((String)val.get("season"));
 				plannedCourses.add(new StoredCourse(cName, g, year, season));
 			}
 			ret = new AuthUser(name, major, takenCourses, plannedCourses, response);
@@ -262,7 +232,7 @@ public class Database {
 		return ret;
 	}
 	
-	public static AuthUser createUser(String major, String name, JsonObject response) {
+	public static AuthUser createUser(String name, String major, JsonObject response) {
 		//create!
 		AuthUser newUser = new AuthUser(name, major, response);
 		Util.write("users/"+response.get("localId").getAsString(), (User)newUser);
