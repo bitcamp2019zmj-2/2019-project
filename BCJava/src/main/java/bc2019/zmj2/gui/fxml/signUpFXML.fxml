@@ -46,5 +46,13 @@
          </effect>
       </Label>
       <Button fx:id="SignUpButton" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" text="Sign Up!" />
+      <Label layoutX="365.0" layoutY="8.0" prefHeight="92.0" prefWidth="90.0" text="✍" textFill="WHITE">
+         <font>
+            <Font size="79.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" color="#ff702e" height="14.0" radius="4.25" width="5.0" />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>
