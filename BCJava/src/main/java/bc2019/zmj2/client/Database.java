@@ -248,9 +248,6 @@ public class Database {
 		groups.put(name, group);
 	}
 	
-	public static void main(String[] args) {
-		getUser("",null);
-	}
 }
 
 

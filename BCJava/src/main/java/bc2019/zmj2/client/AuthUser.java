@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.google.gson.JsonObject;
 
+import bc2019.zmj2.util.Util;
+
 public class AuthUser extends User {
 
 	private final JsonObject authObject;
@@ -26,4 +28,9 @@ public class AuthUser extends User {
 		return authObject.get("email").getAsString();
 	}
 	
+	@Override
+	public void updateUser() {
+		String s = "users/"+authObject.get("localId").getAsString();
+		Util.write("user/" + s, this);
+	}
 }

@@ -121,5 +121,9 @@ public class User {
 	public static AuthUser getSessionUser() {
 		return sessionUser;
 	}
+	
+	public void updateUser() {
+	//yee	
+	}
 
 }

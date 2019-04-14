@@ -30,6 +30,7 @@ import bc2019.zmj2.client.Database;
 import bc2019.zmj2.client.Grade;
 import bc2019.zmj2.client.PlannedCourse;
 import bc2019.zmj2.client.StoredCourse;
+import bc2019.zmj2.client.User;
 
 public class Util {
 	
@@ -214,4 +215,11 @@ public class Util {
 	}
 	
 	//to do: to and from reference object
+	
+	public void updateUser(User u) {
+		if(u instanceof AuthUser) {
+			AuthUser au = (AuthUser)u;
+			au.updateUser();
+		}
+	}
 }
