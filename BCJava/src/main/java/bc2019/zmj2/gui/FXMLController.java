@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,15 +52,14 @@ public class FXMLController {
     private ImageView imageLogin;
 
     @FXML
-    void onClick_showName(ActionEvent event) {
+    void onClick_showName(ActionEvent event) throws IOException {
     	String username = txt_firstName.getText();
 		String password = txt_password.getText()	;
 		try {
 			Util.login(username, password);
-			JOptionPane.showMessageDialog(new JFrame(),
-				    "YEEHAW",
-				    "Login Success",
-				    JOptionPane.ERROR_MESSAGE);
+	    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
+	    	TabPane pane = FXMLLoader.load(yeet);
+	    	BrainStormLoginPane.getChildren().setAll(pane);
 		} catch (LoginException e1) {
 			JOptionPane.showMessageDialog(new JFrame(),
 				    "Invalid username or password",
