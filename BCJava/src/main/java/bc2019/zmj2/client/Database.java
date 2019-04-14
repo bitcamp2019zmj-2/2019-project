@@ -154,7 +154,7 @@ public class Database {
 			
 			cCourse.setGened(data[11]);
 		}
-		writeCoursesToDb();
+//		writeCoursesToDb();
 	}
 	
 	private static void writeCoursesToDb() {
@@ -190,21 +190,22 @@ public class Database {
 	public static AuthUser getUser(String user, JsonObject response) {
 		//if no user, create user
 		DocumentSnapshot userShot = Util.retrieve("users/"+response.get("localId").getAsString(), response);
+		AuthUser ret = null;
 		if(userShot.exists()) {
 			//user is real
 			String name = userShot.getString("name");
 			String major = userShot.getString("major");
 			userShot.get("taken");
-		} else {
-			
 		}
-		return new AuthUser(user,user, response);
+		User.setSessionUser(ret);
+		return ret;
 	}
 	
 	public static AuthUser createUser(String major, String name, JsonObject response) {
 		//create!
 		AuthUser newUser = new AuthUser(name, major, response);
 		Util.write("users/"+response.get("localId").getAsString(), (User)newUser);
+		User.setSessionUser(newUser);
 		return newUser;
 	}
 	
@@ -215,6 +216,7 @@ public class Database {
 	public static void addGroup(String name, Group group) {
 		groups.put(name, group);
 	}
+	
 }
 
 

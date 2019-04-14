@@ -8,7 +8,7 @@ public class AuthUser extends User {
 	
 	public AuthUser(String name, String major, JsonObject authObject) throws IllegalArgumentException {
 		super(name, major);
-		if(authObject == null) throw new IllegalArgumentException("authObject is null");
+//		if(authObject == null) throw new IllegalArgumentException("authObject is null");
 		this.authObject = authObject;
 		//verify
 	}
