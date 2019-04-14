@@ -27,7 +27,9 @@ import com.google.gson.stream.JsonReader;
 
 import bc2019.zmj2.client.AuthUser;
 import bc2019.zmj2.client.Database;
-import bc2019.zmj2.client.User;
+import bc2019.zmj2.client.Grade;
+import bc2019.zmj2.client.PlannedCourse;
+import bc2019.zmj2.client.StoredCourse;
 
 public class Util {
 	
@@ -200,6 +202,15 @@ public class Util {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static List<StoredCourse> toStoredCourse(Grade g, PlannedCourse... c) {
+		List<StoredCourse> planned = new ArrayList<StoredCourse>();
+		for(PlannedCourse x : c) {
+			StoredCourse newC = new StoredCourse(x.getName(), g, x.getYear(), x.getSeason());
+			planned.add(newC);
+		}
+		return planned;
 	}
 	
 	//to do: to and from reference object

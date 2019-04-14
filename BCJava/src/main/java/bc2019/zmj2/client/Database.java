@@ -197,7 +197,7 @@ public class Database {
 			String name = userShot.getString("name");
 			String major = userShot.getString("major");
 			List<StoredCourse> takenCourses = new ArrayList<StoredCourse>();
-			List<StoredCourse> plannedCourses = new ArrayList<StoredCourse>();
+			List<PlannedCourse> plannedCourses = new ArrayList<PlannedCourse>();
 			Map<String,Object> usermap = userShot.getData();
 			ArrayList takendata = (ArrayList)usermap.get("taken");
 			ArrayList planneddata = (ArrayList)usermap.get("planned");
@@ -223,7 +223,7 @@ public class Database {
 				cName = (String)val.get("name");
 				g = Grade.valueOf((String)val.get("grade"));
 				season = Season.valueOf((String)val.get("season"));
-				plannedCourses.add(new StoredCourse(cName, g, year, season));
+				plannedCourses.add(new PlannedCourse(cName,year, season));
 			}
 			ret = new AuthUser(name, major, takenCourses, plannedCourses, response);
 			

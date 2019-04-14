@@ -9,7 +9,8 @@ public class User {
 	private static AuthUser sessionUser;
 	
 	private String name, major;
-	private List<StoredCourse> taken, planned;
+	private List<StoredCourse> taken;
+	private List<PlannedCourse> planned;
 	
 	public User() {
 		name = null;
@@ -22,10 +23,10 @@ public class User {
 		this.name = name;
 		this.major = major;
 		this.taken = new ArrayList<StoredCourse>();
-		this.planned = new ArrayList<StoredCourse>();
+		this.planned = new ArrayList<PlannedCourse>();
 	}
 	
-	public User(String name, String major, List<StoredCourse> taken, List<StoredCourse> planned) {
+	public User(String name, String major, List<StoredCourse> taken, List<PlannedCourse> planned) {
 		this.name = name;
 		this.major = major;
 		this.taken = taken;
@@ -56,11 +57,11 @@ public class User {
 		this.taken = taken;
 	}
 
-	public List<StoredCourse> getPlanned() {
+	public List<PlannedCourse> getPlanned() {
 		return planned;
 	}
 
-	public void setPlanned(List<StoredCourse> planned) {
+	public void setPlanned(List<PlannedCourse> planned) {
 		this.planned = planned;
 	}
 
@@ -104,7 +105,7 @@ public class User {
 	//Returns combined credits of taken and planned courses, used for checking if the student meets the 120 credit minimum
 	public int getTotalCredits() {
 		int total = 0;
-		for(StoredCourse sc: this.planned) {
+		for(PlannedCourse sc: this.planned) {
 			total += sc.getCredits();
 		}
 		for(StoredCourse sc: this.taken) {

@@ -2,6 +2,8 @@ package bc2019.zmj2.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import bc2019.zmj2.util.Util;
+
 public class Major {
 	private String name;
 //	private List<Requirable> reqs;
@@ -69,7 +71,9 @@ public class Major {
 	
 	//Checks if a users previously taken/currently planned meets the requirements for this major
 	public boolean meetsReqs(User u) {
-		List<StoredCourse> allCourses = u.getPlanned();
+		PlannedCourse[] pl = new PlannedCourse[u.getPlanned().size()];
+		pl = u.getPlanned().toArray(pl);
+		List<StoredCourse> allCourses = Util.toStoredCourse(Grade.CM, pl);
 		allCourses.addAll(u.getTaken());
 		
 		//Fix later to make this less hacky
