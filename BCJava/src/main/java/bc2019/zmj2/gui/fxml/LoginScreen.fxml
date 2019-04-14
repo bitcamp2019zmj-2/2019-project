@@ -11,9 +11,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import bc2019.zmj2.gui.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2e2e42;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bc2019.zmj2.gui.FXMLController">
+<AnchorPane fx:id="BrainStormLoginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2e2e42;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bc2019.zmj2.gui.FXMLController">
    <children>
       <GridPane layoutX="53.0" layoutY="149.0" prefHeight="118.0" prefWidth="497.0">
         <columnConstraints>
@@ -47,6 +46,6 @@
             <DropShadow blurType="ONE_PASS_BOX" color="#805e37" height="10.5" radius="5.8325" spread="0.15" width="14.83" />
          </effect></Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="302.0" layoutY="281.0" mnemonicParsing="false" style="-fx-background-color: #f48c42; -fx-font-size: calibri; -fx-border-color: #c16f30;" text="Sign Up" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="orangeSignUpButton" layoutX="302.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#clickedSignUp" style="-fx-background-color: #f48c42; -fx-font-size: calibri; -fx-border-color: #c16f30;" text="Sign Up" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </AnchorPane>
