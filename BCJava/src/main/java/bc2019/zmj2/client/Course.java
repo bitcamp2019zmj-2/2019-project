@@ -17,6 +17,9 @@ public class Course implements Requirable {
 	private Map<Requirable, Grade> prereqs; //AND conditions, OR done by Group
 	private List<Course> coreqs;
 	private List<Requirable> restrictions;
+	private List<String> deptForbidden;
+	private List<String> majorForbidden;
+	private List<String> requiredMajor;
 	private List<Course> alternates;
 	
 	private String gened;

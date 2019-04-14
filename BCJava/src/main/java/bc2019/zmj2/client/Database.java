@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -143,6 +144,12 @@ public class Database {
 			cCourse.setAlternates(altNames);
 			
 			cCourse.setGened(data[11]);
+		}
+		
+		Set<String> keys = courses.keySet();
+		
+		for(String key : keys) {
+			Util.write("classes/" + key.toLowerCase(), courses.get(key));
 		}
 	}
 	
