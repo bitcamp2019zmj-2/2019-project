@@ -40,7 +40,6 @@ public class FXML2Controller {
 	@FXML
 	private Button RegisterButton;
 
-<<<<<<< HEAD
 	@FXML
 	void RegisteredUser(ActionEvent event) throws IOException {
 		String username = signUpEmailAddress_txtbox.getText();
@@ -53,7 +52,6 @@ public class FXML2Controller {
 		    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
 		    	TabPane pane = FXMLLoader.load(yeet);
 		    	SignUpPane.getChildren().setAll(pane);
-		    	FXML3Controller.updateInfo();
 			} catch (SignupException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,64 +59,3 @@ public class FXML2Controller {
     	}
 	}
 }
-=======
-	    @FXML
-	    private TextField signUpPass_txtbox;
-
-	    @FXML
-	    private TextField signUpEmailAddress_txtbox;
-
-	    @FXML
-	    private Button RegisterButton;
-	    
-	    
-	  //COURSE + INFO PANE
-	    // ALLOW THE NAME AND MAJOR AND EMAIL TO BE SET INTO INFO PANE
-	    // THERE IS A DESCRIPTION BOX BUT THAT'S FOR LATER IG IF YOU WANT
-	    // MEH... 
-	    
-
-	    @FXML
-	    private Label usersEmail;
-
-	    @FXML
-	    private Label NameInputHerePls;
-
-	    @FXML
-	    private Label MajorHerePls;
-	    
-	    @FXML
-	    private Label UserDescriptionBoxPls;
-
-	
-
-
-	    @FXML
-	    void RegisteredUser(ActionEvent event) throws IOException {
-	    	String username = signUpEmailAddress_txtbox.getText();
-	    	String pswd = signUpPass_txtbox.getText();
-	    	String vrfy = SignUpVerify_txtbox.getText();
-	    	if(!username.equals("") && pswd.equals(vrfy)) {
-	    		try {
-					Util.signup(username, pswd);
-			    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
-			    	TabPane pane = FXMLLoader.load(yeet);
-			    	SignUpPane.getChildren().setAll(pane);
-				} catch (SignupException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	    	}
-	    }
-	    
-
-
-
-}
-	    
-	    
-
-	    
-
-
->>>>>>> branch 'master' of https://github.com/bitcamp2019zmj-2/2019-project.git

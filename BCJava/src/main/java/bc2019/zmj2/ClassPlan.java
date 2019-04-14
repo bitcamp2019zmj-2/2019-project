@@ -1,5 +1,6 @@
 package bc2019.zmj2;
 
+import bc2019.zmj2.client.Database;
 import bc2019.zmj2.gui.MainAppx;
 import bc2019.zmj2.util.Util;
 import bc2019.zmj2.util.WebUtil;
@@ -12,6 +13,7 @@ public class ClassPlan {
     public static void main(String[] args) {
     	WebUtil.init();
     	Util.init();
+    	Database.getFromCSV("CMSC");
     	MainAppx.begin(args);
     	
     	try {

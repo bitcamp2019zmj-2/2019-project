@@ -207,7 +207,7 @@ public class Database {
 				String cName = "";
 				Grade g = Grade.F;
 				Season season = Season.WINTER;
-				year = Integer.parseInt((String)val.get("year"));
+				year = (int)((Long)val.get("year")).longValue();
 				cName = (String)val.get("name");
 				g = Grade.valueOf((String)val.get("grade"));
 				season = Season.valueOf((String)val.get("season"));
@@ -219,7 +219,7 @@ public class Database {
 				String cName = "";
 				Grade g = Grade.F;
 				Season season = Season.WINTER;
-				year = Integer.parseInt((String)val.get("year"));
+				year = (int)((Long)val.get("year")).longValue();
 				cName = (String)val.get("name");
 				g = Grade.valueOf((String)val.get("grade"));
 				season = Season.valueOf((String)val.get("season"));

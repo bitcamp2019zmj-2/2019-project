@@ -1,5 +1,7 @@
 package bc2019.zmj2.gui;
 
+import javax.swing.SwingUtilities;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -19,6 +21,9 @@ public class FXML3Controller {
     private Label usersEmail;
 
     @FXML
+    private Label name_info;
+
+    @FXML
     private Label NameInputHerePls;
 
     @FXML
@@ -26,14 +31,7 @@ public class FXML3Controller {
 
     @FXML
     private Label MajorHerePls1;
-    
-    @FXML
-    private static Label name_info;
-    
-    public static void updateInfo() {
-    	name_info.setText("Name: " + "FUCK");
-    }
-    
-    
+
+  
 
 }
