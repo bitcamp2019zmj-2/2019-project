@@ -35,6 +35,9 @@ public class FXML3Controller {
     
     @FXML
     private Label email_info;
+    
+    @FXML
+    private Pane course_desc;
 
     @FXML
     private Label major_info;
