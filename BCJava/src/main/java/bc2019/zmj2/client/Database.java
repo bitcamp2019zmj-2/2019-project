@@ -1,7 +1,9 @@
 package bc2019.zmj2.client;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import com.google.gson.JsonElement;
 
@@ -16,8 +18,21 @@ public class Database {
 		
 	}
 
-	public static void getFromCSV() {
+	public static void getFromCSV(String dept) {
 		//TODO: Parse data pulled from CSV file, necessary only if web-scraping script has to be run manually
+		File f = new File("classes-"+dept+".csv");
+		//Scanner s = null;
+		try (Scanner s = new Scanner(f)) {
+			while (s.hasNextLine()) {
+			String line = s.nextLine();
+			String[] rawData = line.split(",");
+			for (String q : rawData) {
+				q = q.replace('§', ','); //Patchy way to deal with CSV delimiter
+			}
+			}
+		} catch (Exception e) {
+			
+		}
 	}
 
 	public static Course getCourse(String name) {
