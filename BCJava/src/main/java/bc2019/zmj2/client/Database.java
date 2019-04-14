@@ -34,7 +34,7 @@ public class Database {
 				String line = s.nextLine();
 				String[] rawData = line.split(",");
 				for (String q : rawData) {
-					q = q.replace('�', ','); //Patchy way to deal with CSV delimiter
+					q = q.replace('*', ','); //Patchy way to deal with CSV delimiter
 				}
 				courses.put(rawData[0]+rawData[1]+rawData[2],
 						new Course(rawData[0],new Integer(rawData[1]),rawData[2]));
