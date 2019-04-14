@@ -49,8 +49,7 @@ public class Database {
 			cCourse.setDescription(data[6]);
 			
 			//TODO: PREQ
-			//TODO: CORQ
-			String[] corq = data[8].split(" ");
+			String[] corq = data[8].split(" "); //Corequisites
 			List<Course> corqCourses = new ArrayList<>();
 			for (String c : corq) {
 				corqCourses.add(courses.get(c));
