@@ -58,8 +58,13 @@ public class FXMLController {
 		try {
 			Util.login(username, password);
 	    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
-	    	TabPane pane = FXMLLoader.load(yeet);
+	    	FXMLLoader myLoad = new FXMLLoader(yeet);
+	    	TabPane pane = myLoad.load();
+	    	FXML3Controller c3 = (FXML3Controller)myLoad.getController();
+//	    	TabPane pane = FXMLLoader.load(yeet);
+	    	
 	    	BrainStormLoginPane.getChildren().setAll(pane);
+	    	c3.updateInfo();
 		} catch (LoginException e1) {
 			JOptionPane.showMessageDialog(new JFrame(),
 				    "Invalid username or password",

@@ -50,8 +50,12 @@ public class FXML2Controller {
 				JsonObject obj = Util.signup(username, pswd);
 				Database.createUser(SignUpName_txtbox.getText(), signUpMajor_txtbox.getText(), obj);
 		    	URL yeet = getClass().getResource("fxml/firstLoadout.fxml");
-		    	TabPane pane = FXMLLoader.load(yeet);
+		    	FXMLLoader myLoad = new FXMLLoader(yeet);
+		    	TabPane pane = myLoad.load();
+		    	FXML3Controller c3 = (FXML3Controller)myLoad.getController();
+//		    	TabPane pane = FXMLLoader.load(yeet);
 		    	SignUpPane.getChildren().setAll(pane);
+		    	c3.updateInfo();
 			} catch (SignupException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

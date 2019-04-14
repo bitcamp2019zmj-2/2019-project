@@ -32,6 +32,8 @@ public class FXML3Controller {
     @FXML
     private Label MajorHerePls1;
 
-  
+    public void updateInfo() {
+    	name_info.setText("but it works");
+    }
 
 }
