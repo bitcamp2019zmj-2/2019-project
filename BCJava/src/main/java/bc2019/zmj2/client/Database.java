@@ -84,8 +84,51 @@ public class Database {
 			}
 			cCourse.setCoreqs(corqCourses);
 			
-			//TODO: REST
-			String[] restrictions = data[9].split(" ");
+			//Restrictions
+			//Not even going to try to generalize this now
+			String rest = data[9];
+			List<Requirable> rList = new ArrayList<>();
+			if (rest.equals("NOCLASS[CMSC] AND NOMAJ[CMSC]")) {
+				rList.add(new Requirable() {
+					@Override
+					public boolean reqMet(User u) {
+						boolean tookCMSC = false;
+						for (StoredCourse c : u.getTaken()) {
+							tookCMSC = tookCMSC || c.getName().contains("CMSC");
+						}
+						return tookCMSC && !u.getMajor().contains("CMSC");
+					}
+					@Override
+					public boolean reqMet(User u, Grade g) {
+						return reqMet(u);
+					}
+				});
+			} else if (rest.equals("NOCLASS[CMSC]")) {
+				rList.add(new Requirable() {
+					@Override
+					public boolean reqMet(User u) {
+						boolean tookCMSC = false;
+						for (StoredCourse c : u.getTaken()) {
+							tookCMSC = tookCMSC || c.getName().contains("CMSC");
+						}
+						return tookCMSC;
+					}
+					@Override
+					public boolean reqMet(User u, Grade g) {
+						return reqMet(u);
+					}
+				});
+			} else if (rest.equals("MAJ[CMSC] MAJ[CMPE] MIN[CMSC]")) {
+				rList.add(new Requirable() {
+					public boolean reqMet(User u) {
+						return u.getMajor().contains("CMSC") ||
+							   u.getMajor().contains("CMPE");
+					}
+					public boolean reqMet(User u, Grade g) {
+						return reqMet(u);
+					}
+				});
+			}
 			
 			
 			String[] alts = data[10].split(" "); //Alternates
